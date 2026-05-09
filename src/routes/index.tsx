@@ -26,7 +26,7 @@ const blocks = [
     eyebrow: "01 — Foundry",
     title: "Data Generation",
     desc: "An autonomous foundry producing real-world data with variety, recovery trajectories and edge cases — at scale.",
-    img: heroImg,
+    img: humanImg,
     chips: [
       { label: "Human-Centric", to: "/data-generation/human-centric" as const },
       { label: "Robot-Centric", to: "/data-generation/robot-centric" as const },
@@ -48,32 +48,52 @@ const blocks = [
   },
 ];
 
+const trusted = ["NVIDIA", "Figure", "1X", "Boston Dynamics", "Tesla", "Sanctuary", "Apptronik", "Agility", "Skild AI", "Physical Intelligence"];
+
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-32 pb-20">
+    <section className="relative isolate min-h-screen overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img
-          src={humanImg}
-          alt=""
-          width={1280}
-          height={896}
-          className="h-full w-full object-cover opacity-30"
+          src={heroImg}
+          alt="Lili-o data foundry"
+          width={1920}
+          height={1088}
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
-        <div className="absolute inset-0 bg-hero-glow" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
+        <div className="absolute inset-0 bg-hero-glow opacity-70" />
       </div>
-      <div className="mx-auto max-w-6xl px-6 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 text-center">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/40 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-secondary" />
           The Autonomous Data Foundry
         </div>
-        <h1 className="mx-auto max-w-5xl text-5xl leading-[1.05] text-gradient md:text-7xl">
+        <h1 className="max-w-5xl text-5xl leading-[1.05] text-gradient drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)] md:text-7xl lg:text-8xl">
           Real World Data to <span className="text-gradient-purple">Accelerate</span> Your Robotic Deployment
         </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+        <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
           Lili-o generates real-world data with variety and recovery trajectories — while
           guaranteeing the quality your foundation models demand.
         </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            to="/contact"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-purple px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-[1.02]"
+          >
+            Book a Demo
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </Link>
+          <a
+            href="#explore"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium backdrop-blur transition hover:bg-white/10"
+          >
+            Explore the Foundry
+          </a>
+        </div>
+      </div>
+      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+        Scroll
       </div>
     </section>
   );
@@ -118,18 +138,54 @@ function BlockCard({ block }: { block: (typeof blocks)[number] }) {
   );
 }
 
+function TrustedBy() {
+  return (
+    <section className="border-y border-border/50 bg-card/30 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
+          They trust Lili-o
+        </p>
+        <p className="mt-4 text-center font-display text-2xl text-gradient md:text-3xl">
+          The world's leading AI &amp; Robotics teams
+        </p>
+        <div className="relative mt-12 overflow-hidden">
+          <div className="flex w-max marquee gap-16">
+            {[...trusted, ...trusted].map((logo, i) => (
+              <span
+                key={i}
+                className="font-display text-2xl font-bold text-muted-foreground/60 transition hover:text-foreground whitespace-nowrap"
+              >
+                {logo}
+              </span>
+            ))}
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <main className="relative overflow-x-clip">
       <SiteNav />
       <Hero />
-      <section className="mx-auto max-w-6xl px-6 pb-32">
+      <section id="explore" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="mb-12 max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.3em] text-secondary">What we do</p>
+          <h2 className="mt-4 text-4xl leading-tight md:text-6xl">
+            Two streams. <span className="text-gradient-purple">One engine.</span>
+          </h2>
+        </div>
         <div className="grid gap-8 md:grid-cols-2">
           {blocks.map((b) => (
             <BlockCard key={b.title} block={b} />
           ))}
         </div>
       </section>
+      <TrustedBy />
       <SiteFooter />
     </main>
   );
