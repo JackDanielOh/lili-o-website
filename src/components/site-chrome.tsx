@@ -11,12 +11,22 @@ export function SiteNav() {
           </span>
           <span className="font-display text-xl font-bold">Lili-o</span>
         </Link>
-        <div className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <Link to="/data-generation" activeProps={{ className: "text-foreground" }} className="hover:text-foreground">
+        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 md:flex">
+          <Link
+            to="/data-generation"
+            activeProps={{ className: "bg-gradient-purple text-white shadow-[var(--shadow-glow)]" }}
+            inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
+            className="rounded-full px-4 py-1.5 text-sm font-medium transition"
+          >
             Data Generation
           </Link>
-          <Link to="/data-quality" activeProps={{ className: "text-foreground" }} className="hover:text-foreground">
-            Data Quality Management
+          <Link
+            to="/data-quality"
+            activeProps={{ className: "bg-gradient-purple text-white shadow-[var(--shadow-glow)]" }}
+            inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
+            className="rounded-full px-4 py-1.5 text-sm font-medium transition"
+          >
+            Data Quality
           </Link>
         </div>
         <Link
