@@ -1,19 +1,7 @@
-FROM node:22-alpine AS builder
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
 FROM node:22-alpine
 WORKDIR /app
-
-COPY --from=builder /app/dist ./dist
-
+COPY package*.json ./
+RUN npm install
+COPY . .
 EXPOSE 8080
-ENV PORT=8080
-ENV NODE_ENV=production
-
-CMD ["node", "dist/server/server.js"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "8080"]
