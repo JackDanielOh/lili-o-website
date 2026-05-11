@@ -13,7 +13,6 @@ export default defineConfig({
   tanstackStart: {
     server: {
       preset: "node",
-      entry: "start",
     },
   },
 });
