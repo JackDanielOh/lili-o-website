@@ -32,3 +32,4 @@ dist-ssr
 *.sw?
 # Large video assets — host via CDN
 src/assets/*.mp4
+src/assets/*.mov
