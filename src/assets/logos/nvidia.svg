@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none">
+  <!-- Eye/swoosh mark -->
+  <path d="M14 10 C14 10 24 6 32 14 C24 14 18 20 18 28 C18 28 10 22 14 10Z" fill="white"/>
+  <path d="M32 14 C40 14 46 20 46 28 C46 36 40 42 32 42 C26 42 21 38 19 32 C22 34 26 36 30 35 C36 33 40 28 40 22 C40 18 37 15 32 14Z" fill="white" opacity="0.6"/>
+  <!-- NVIDIA text -->
+  <text x="54" y="34" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="22" fill="white" letter-spacing="1">NVIDIA</text>
+</svg>

@@ -13,10 +13,6 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DataQualityIndexRouteImport } from './routes/data-quality.index'
 import { Route as DataGenerationIndexRouteImport } from './routes/data-generation.index'
-import { Route as DataQualityExpertReviewRouteImport } from './routes/data-quality.expert-review'
-import { Route as DataQualityAutoValidationRouteImport } from './routes/data-quality.auto-validation'
-import { Route as DataGenerationRobotCentricRouteImport } from './routes/data-generation.robot-centric'
-import { Route as DataGenerationHumanCentricRouteImport } from './routes/data-generation.human-centric'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
@@ -38,47 +34,16 @@ const DataGenerationIndexRoute = DataGenerationIndexRouteImport.update({
   path: '/data-generation/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DataQualityExpertReviewRoute = DataQualityExpertReviewRouteImport.update({
-  id: '/data-quality/expert-review',
-  path: '/data-quality/expert-review',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DataQualityAutoValidationRoute =
-  DataQualityAutoValidationRouteImport.update({
-    id: '/data-quality/auto-validation',
-    path: '/data-quality/auto-validation',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const DataGenerationRobotCentricRoute =
-  DataGenerationRobotCentricRouteImport.update({
-    id: '/data-generation/robot-centric',
-    path: '/data-generation/robot-centric',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const DataGenerationHumanCentricRoute =
-  DataGenerationHumanCentricRouteImport.update({
-    id: '/data-generation/human-centric',
-    path: '/data-generation/human-centric',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/data-generation/human-centric': typeof DataGenerationHumanCentricRoute
-  '/data-generation/robot-centric': typeof DataGenerationRobotCentricRoute
-  '/data-quality/auto-validation': typeof DataQualityAutoValidationRoute
-  '/data-quality/expert-review': typeof DataQualityExpertReviewRoute
   '/data-generation/': typeof DataGenerationIndexRoute
   '/data-quality/': typeof DataQualityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/data-generation/human-centric': typeof DataGenerationHumanCentricRoute
-  '/data-generation/robot-centric': typeof DataGenerationRobotCentricRoute
-  '/data-quality/auto-validation': typeof DataQualityAutoValidationRoute
-  '/data-quality/expert-review': typeof DataQualityExpertReviewRoute
   '/data-generation': typeof DataGenerationIndexRoute
   '/data-quality': typeof DataQualityIndexRoute
 }
@@ -86,53 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
-  '/data-generation/human-centric': typeof DataGenerationHumanCentricRoute
-  '/data-generation/robot-centric': typeof DataGenerationRobotCentricRoute
-  '/data-quality/auto-validation': typeof DataQualityAutoValidationRoute
-  '/data-quality/expert-review': typeof DataQualityExpertReviewRoute
   '/data-generation/': typeof DataGenerationIndexRoute
   '/data-quality/': typeof DataQualityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/contact'
-    | '/data-generation/human-centric'
-    | '/data-generation/robot-centric'
-    | '/data-quality/auto-validation'
-    | '/data-quality/expert-review'
-    | '/data-generation/'
-    | '/data-quality/'
+  fullPaths: '/' | '/contact' | '/data-generation/' | '/data-quality/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/contact'
-    | '/data-generation/human-centric'
-    | '/data-generation/robot-centric'
-    | '/data-quality/auto-validation'
-    | '/data-quality/expert-review'
-    | '/data-generation'
-    | '/data-quality'
-  id:
-    | '__root__'
-    | '/'
-    | '/contact'
-    | '/data-generation/human-centric'
-    | '/data-generation/robot-centric'
-    | '/data-quality/auto-validation'
-    | '/data-quality/expert-review'
-    | '/data-generation/'
-    | '/data-quality/'
+  to: '/' | '/contact' | '/data-generation' | '/data-quality'
+  id: '__root__' | '/' | '/contact' | '/data-generation/' | '/data-quality/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
-  DataGenerationHumanCentricRoute: typeof DataGenerationHumanCentricRoute
-  DataGenerationRobotCentricRoute: typeof DataGenerationRobotCentricRoute
-  DataQualityAutoValidationRoute: typeof DataQualityAutoValidationRoute
-  DataQualityExpertReviewRoute: typeof DataQualityExpertReviewRoute
   DataGenerationIndexRoute: typeof DataGenerationIndexRoute
   DataQualityIndexRoute: typeof DataQualityIndexRoute
 }
@@ -167,47 +99,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataGenerationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/data-quality/expert-review': {
-      id: '/data-quality/expert-review'
-      path: '/data-quality/expert-review'
-      fullPath: '/data-quality/expert-review'
-      preLoaderRoute: typeof DataQualityExpertReviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-quality/auto-validation': {
-      id: '/data-quality/auto-validation'
-      path: '/data-quality/auto-validation'
-      fullPath: '/data-quality/auto-validation'
-      preLoaderRoute: typeof DataQualityAutoValidationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-generation/robot-centric': {
-      id: '/data-generation/robot-centric'
-      path: '/data-generation/robot-centric'
-      fullPath: '/data-generation/robot-centric'
-      preLoaderRoute: typeof DataGenerationRobotCentricRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-generation/human-centric': {
-      id: '/data-generation/human-centric'
-      path: '/data-generation/human-centric'
-      fullPath: '/data-generation/human-centric'
-      preLoaderRoute: typeof DataGenerationHumanCentricRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
-  DataGenerationHumanCentricRoute: DataGenerationHumanCentricRoute,
-  DataGenerationRobotCentricRoute: DataGenerationRobotCentricRoute,
-  DataQualityAutoValidationRoute: DataQualityAutoValidationRoute,
-  DataQualityExpertReviewRoute: DataQualityExpertReviewRoute,
   DataGenerationIndexRoute: DataGenerationIndexRoute,
   DataQualityIndexRoute: DataQualityIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -17,13 +17,13 @@ export function SubPage(props: SubPageProps) {
   return (
     <main className="relative overflow-x-clip">
       <SiteNav />
-      <section className="relative isolate overflow-hidden pt-32 pb-16">
+      <section className="relative isolate overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 -z-10">
           <img src={props.image} alt="" className="h-full w-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
           <div className="absolute inset-0 bg-hero-glow" />
         </div>
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="px-6">
           <Link
             to={props.backTo}
             className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
@@ -36,13 +36,13 @@ export function SubPage(props: SubPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-16">
+      <section className="px-6 pb-16">
         <div className="overflow-hidden rounded-3xl border border-white/10">
           <img src={props.image} alt={props.title} className="aspect-[16/9] w-full object-cover" />
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-24">
+      <section className="px-6 pb-24">
         <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">{props.longDescription}</p>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {props.features.map((f) => (
@@ -54,7 +54,7 @@ export function SubPage(props: SubPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-32">
+      <section className="px-6 pb-32">
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-card p-12 text-center">
           <div className="absolute inset-0 -z-10 bg-hero-glow opacity-80" />
           <h2 className="text-3xl md:text-5xl">Ready to power your robot with real data?</h2>
@@ -84,13 +84,13 @@ export function CategoryPage(props: CategoryPageProps) {
   return (
     <main className="relative overflow-x-clip">
       <SiteNav />
-      <section className="relative isolate overflow-hidden pt-32 pb-16">
+      <section className="relative isolate overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 -z-10">
           <img src={props.image} alt="" className="h-full w-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
           <div className="absolute inset-0 bg-hero-glow" />
         </div>
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="px-6">
           <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Home
           </Link>
@@ -100,7 +100,7 @@ export function CategoryPage(props: CategoryPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 pb-32">
+      <section className="px-6 pb-32">
         <div className="grid gap-6 md:grid-cols-3">
           {props.chips.map((c) => (
             <a
