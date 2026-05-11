@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Play, Fingerprint, Camera, RotateCcw, SlidersHorizontal, BadgeCheck, Plug } from "lucide-react";
 import { SiteNav, SiteFooter } from "@/components/site-chrome";
 import cookingVideo from "@/assets/cooking.mov";
-import gridvideos from "@/assets/3x3 human centric.mp4"
 import washingVideo from "@/assets/washing.mov";
 import logoUnitree from "@/assets/logos/unitree.png";
 import logoAgibot from "@/assets/logos/agibot.png";
@@ -125,7 +124,7 @@ function DataGenerationPage() {
 
       {/* ── Main video ── */}
       <video
-        src={gridvideos}
+        src={cookingVideo}
         autoPlay
         muted
         loop
