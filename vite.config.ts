@@ -15,4 +15,9 @@ export default defineConfig({
       preset: "node",
     },
   },
+  vite: {
+    server: {
+      allowedHosts: true,
+    },
+  },
 });
