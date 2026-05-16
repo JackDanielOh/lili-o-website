@@ -66,11 +66,19 @@ function ContactPage() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
+              if (!budget) {
+                setError("Please select a project budget.");
+                return;
+              }
+              if (services.length === 0) {
+                setError("Please select at least one service.");
+                return;
+              }
               setLoading(true);
               setError("");
               const fd = new FormData(e.currentTarget);
               try {
-                await submitContact({
+                const result = await submitContact({
                   data: {
                     firstName: fd.get("firstName") as string,
                     lastName: fd.get("lastName") as string,
@@ -82,7 +90,11 @@ function ContactPage() {
                     message: fd.get("message") as string,
                   },
                 });
-                setSubmitted(true);
+                if (result.ok) {
+                  setSubmitted(true);
+                } else {
+                  setError("Something went wrong. Please try again or email us directly.");
+                }
               } catch {
                 setError("Something went wrong. Please try again or email us directly.");
               } finally {
@@ -109,15 +121,15 @@ function ContactPage() {
                   </div>
                   <Field label="Work email *" name="email" type="email" />
                   <div className="grid gap-5 md:grid-cols-2">
-                    <Field label="Company" name="company" required={false} />
-                    <Field label="Role" name="role" required={false} />
+                    <Field label="Company *" name="company" />
+                    <Field label="Role *" name="role" />
                   </div>
                 </div>
 
                 {/* Budget */}
                 <div>
                   <p className="mb-3 text-sm font-medium">
-                    Project budget <span className="text-muted-foreground">(optional)</span>
+                    Project budget *
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {BUDGETS.map((b) => (
@@ -141,8 +153,7 @@ function ContactPage() {
                 {/* Services */}
                 <div>
                   <p className="mb-3 text-sm font-medium">
-                    What can we help with?{" "}
-                    <span className="text-muted-foreground">Select all that apply</span>
+                    What can we help with? *
                   </p>
                   <div className="flex gap-2">
                     {SERVICES.map((s) => {
