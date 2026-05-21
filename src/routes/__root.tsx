@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import faviconUrl from "../assets/logos/Logo Primaire.svg?url";
+import faviconUrl from "../assets/logos/logo.png?url";
 
 function NotFoundComponent() {
   return (
@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/svg+xml", href: faviconUrl },
+      { rel: "icon", type: "image/png", href: faviconUrl },
     ],
   }),
   shellComponent: RootShell,
