@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
 import foundryImg from "@/assets/foundry.jpg";
+import humanCentricVideo from "@/assets/cooking.mov";
 
 export const Route = createFileRoute("/product")({
   head: () => ({
@@ -87,25 +88,25 @@ function Product() {
           <div className="eyebrow text-[var(--violet)] mb-6">Comparison</div>
           <h2 className="display-lg max-w-3xl">The market settled for trade-offs. We didn't.</h2>
 
-          <div className="mt-14 overflow-x-auto">
+          <div className="mt-14 overflow-x-auto rounded-2xl border border-[var(--violet)]/60">
             <table className="w-full text-sm md:text-base border-collapse min-w-[720px]">
               <thead>
                 <tr className="text-left">
-                  <th className="py-5 pr-6 text-paper/50 font-normal eyebrow"></th>
+                  <th className="py-5 px-6 text-paper/50 font-normal eyebrow"></th>
                   {["Simulation", "Human-Centric", "Téléopération", "Lili-o"].map((h, i) => (
-                    <th key={h} className={`py-5 px-4 font-bold tracking-tight ${i === 3 ? "text-[var(--violet)]" : "text-paper"}`}>{h}</th>
+                    <th key={h} className={`py-5 px-6 text-center font-bold tracking-tight ${i === 3 ? "text-[var(--violet)]" : "text-paper"}`}>{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {tableRows.map((r) => (
                   <tr key={r.label} className="border-t border-white/10">
-                    <td className="py-5 pr-6 text-paper/60">{r.label}</td>
+                    <td className="py-5 px-6 text-paper/60">{r.label}</td>
                     {r.values.map((v, i) => {
                       const val = typeof v === "string" ? v : v.v;
                       const hi = typeof v === "object" && v.hi;
                       return (
-                        <td key={i} className={`py-5 px-4 ${hi ? "text-[var(--violet)] font-medium bg-[var(--violet)]/5" : "text-paper/80"}`}>
+                        <td key={i} className={`py-5 px-6 text-center ${hi ? "text-[var(--violet)] font-medium bg-[var(--violet)]/5" : "text-paper/80"}`}>
                           {val}
                         </td>
                       );
@@ -168,7 +169,17 @@ function Product() {
       </section>
 
       {/* HUMAN CENTRIC */}
-      <section className="container-x py-28 md:py-36">
+      <section className="relative overflow-hidden">
+        <video
+          src={humanCentricVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink/80" />
+        <div className="relative container-x py-28 md:py-36">
         <div className="grid md:grid-cols-[1fr_2fr] gap-16 mb-16">
           <div>
             <div className="eyebrow text-[var(--violet)] mb-6">Second channel</div>
@@ -209,6 +220,7 @@ function Product() {
               </ul>
             </div>
           ))}
+        </div>
         </div>
       </section>
 
