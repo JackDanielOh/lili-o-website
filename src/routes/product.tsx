@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
 import foundryImg from "@/assets/foundry.jpg";
-import humanCentricVideo from "@/assets/cooking.mov";
+import humanCentricVideo from "@/assets/0521.mov";
 
 export const Route = createFileRoute("/product")({
   head: () => ({
