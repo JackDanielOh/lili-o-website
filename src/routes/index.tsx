@@ -1,222 +1,172 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Database, ShieldCheck } from "lucide-react";
-import { SiteNav, SiteFooter } from "@/components/site-chrome";
-import heroImg from "@/assets/hero.jpg";
-import dashboardImg from "@/assets/dashboard.png";
-import cookingVideo from "@/assets/cooking.mov";
-import washingVideo from "@/assets/washing.mov";
-import logoNvidia from "@/assets/logos/nvidia.svg";
-import logoBpi from "@/assets/logos/bpifrance.svg";
-import logoAtalian from "@/assets/logos/atalian.svg";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Pyramid } from "@/components/Pyramid";
+import heroImg from "@/assets/hero2.png";
+import foundryImg from "@/assets/foundry.jpg";
+import researchImg from "@/assets/research.jpg";
 
 export const Route = createFileRoute("/")({
-  component: Index,
   head: () => ({
     meta: [
-      { title: "Lili-o — Real World Data for Robotics" },
-      {
-        name: "description",
-        content:
-          "Lili-o is the first autonomous data foundry generating real-world data with variety and recovery trajectories to accelerate robotic deployment.",
-      },
+      { title: "Lili-o — The autonomous Data Foundry for Physical AI" },
+      { name: "description", content: "We run robots 24/7 in home environments to generate the training data Physical AI needs." },
+      { property: "og:title", content: "Lili-o — Data Foundry for Physical AI" },
+      { property: "og:description", content: "Autonomous data generation for the next era of robotics." },
     ],
   }),
+  component: Home,
 });
 
-const blocks = [
-  {
-    to: "/data-generation" as const,
-    icon: Database,
-    eyebrow: "01 — Foundry",
-    title: "The datasets your robots are starving for.",
-    desc: "Real-world variety, recovery trajectories and edge cases — at scale, across 12 countries, 24/7.",
-    video: cookingVideo,
-    fallback: washingVideo,
-    chips: [
-      { label: "Human-Centric", to: "/data-generation/human-centric" as const },
-      { label: "Robot-Centric", to: "/data-generation/robot-centric" as const },
-      { label: "Explore", to: "/data-generation" as const },
-    ],
-  },
-  {
-    to: "/data-quality" as const,
-    icon: ShieldCheck,
-    eyebrow: "02 — Trust Layer",
-    title: "Bad data is worse than no data.",
-    desc: "Every frame scored, flagged or discarded before it reaches your training pipeline.",
-    video: null,
-    fallback: dashboardImg,
-    chips: [
-      { label: "Auto Validation", to: "/data-quality/auto-validation" as const },
-      { label: "Expert Review", to: "/data-quality/expert-review" as const },
-      { label: "Explore", to: "/data-quality" as const },
-    ],
-  },
-];
-
-const trusted = [
-  { name: "NVIDIA", src: logoNvidia },
-  { name: "BPIFrance", src: logoBpi },
-  { name: "Atalian", src: logoAtalian },
-];
-
-function Hero() {
+function Home() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden pt-16">
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={heroImg}
-          alt="Lili-o data foundry"
-          width={1920}
-          height={1088}
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background" />
-        <div className="absolute inset-0 bg-hero-glow opacity-70" />
-      </div>
-      <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/40 px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-secondary" />
-          Training Data Management Infrastructure
-        </div>
-        <h1 className="max-w-5xl text-5xl leading-[1.05] text-gradient drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)] md:text-7xl lg:text-8xl">
-          Physical AI World Data to <span className="text-gradient-purple">Accelerate</span> Your Robotic Deployment
-        </h1>
-        <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-          Lili-o generates real-world data with variety and recovery trajectories — while
-          guaranteeing the quality your foundation models demand.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link
-            to="/contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-purple px-6 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-[1.02]"
-          >
-            Book a Demo
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-          </Link>
-          <a
-            href="#explore"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium backdrop-blur transition hover:bg-white/10"
-          >
-            Explore the Foundry
-          </a>
-        </div>
-      </div>
-      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-        Scroll
-      </div>
-    </section>
-  );
-}
+    <div className="theme-dark bg-ink text-paper min-h-screen">
+      <SiteHeader variant="dark" />
 
-function BlockCard({ block }: { block: (typeof blocks)[number] }) {
-  const Icon = block.icon;
-  return (
-    <div className="group relative mx-4 overflow-hidden rounded-2xl border border-white/10 shadow-[var(--shadow-soft)] transition hover:border-secondary/40">
-      <Link to={block.to} className="block">
-        <div className="relative aspect-[21/10] overflow-hidden">
-          {block.video ? (
-            <video
-              src={block.video}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <img
-              src={block.fallback}
-              alt={block.title}
-              loading="lazy"
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-          <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-background/70 px-3 py-1 text-xs backdrop-blur">
-            <Icon className="h-3.5 w-3.5 text-secondary" />
-            {block.eyebrow}
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <h2 className="text-4xl md:text-5xl">{block.title}</h2>
-            <p className="mt-3 max-w-2xl text-muted-foreground md:text-lg">{block.desc}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {block.chips.map((chip) => (
-                <span
-                  key={chip.label}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-background/50 px-4 py-2 text-sm backdrop-blur transition hover:border-secondary/60 hover:bg-secondary/10 hover:text-foreground"
-                >
-                  {chip.label}
-                  <ArrowRight className="h-3.5 w-3.5 opacity-60" />
-                </span>
-              ))}
-            </div>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroImg} alt="" className="w-full h-full object-cover opacity-80" width={1600} height={1100} />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/10 via-ink/40 to-ink" />
+        </div>
+        <Pyramid className="absolute -bottom-20 right-[-6rem] w-[480px] opacity-30 pointer-events-none" />
+        <div className="container-x relative pt-28 md:pt-40 pb-32 md:pb-48">
+          <div className="eyebrow text-[var(--violet)] mb-8">// Household Robotics Data</div>
+          <h1 className="display-xl max-w-5xl">
+            The only <span className="text-[var(--violet)]">Data Foundry</span> built for household robots.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
+            We run robots 24/7 in real home environments — kitchens, living rooms, bathrooms — generating the contact-rich, household-specific training data Physical AI needs.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href="#contact" className="rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition">
+              Request access
+            </a>
+            <Link to="/product" className="rounded-xl px-7 py-4 border border-white/20 hover:border-[var(--violet)] transition">
+              Explore the foundry →
+            </Link>
           </div>
         </div>
-      </Link>
-    </div>
-  );
-}
+      </section>
 
-function TrustedBy() {
-  return (
-    <section className="border-y border-border/50 bg-card/30 py-20">
-      <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-        They trust Lili-o
-      </p>
-      <div className="mt-12 flex items-center justify-center gap-20">
-        {trusted.map((logo) => (
-          <img
-            key={logo.name}
-            src={logo.src}
-            alt={logo.name}
-            className="h-8 opacity-50 transition hover:opacity-100"
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function BrandStatement() {
-  return (
-    <section className="relative isolate overflow-hidden border-y border-white/5 py-28">
-      <div className="absolute inset-0 -z-10 bg-hero-glow opacity-60" />
-      <div className="mx-auto px-6 text-center">
-        <p className="text-xs uppercase tracking-[0.3em] text-secondary">Our mission</p>
-        <h2 className="mt-6 text-4xl leading-[1.1] text-gradient md:text-6xl">
-          Lili-o is the training data infrastructure company powering the next generation of{" "}
-          <span className="text-gradient-purple">physical AI</span>.
-        </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground">
-          We generate real-world robotic data at scale — with variety, recovery trajectories, and
-          edge cases — then guarantee its quality before it ever reaches your training pipeline.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-function Index() {
-  return (
-    <main className="relative overflow-x-clip">
-      <SiteNav />
-      <Hero />
-      <BrandStatement />
-      <section id="explore" className="py-24 md:py-32">
-        <div className="mb-12 px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-secondary">What we do</p>
-          <h2 className="mt-4 text-4xl leading-tight md:text-6xl">
-            Two streams. <span className="text-gradient-purple">One engine.</span>
-          </h2>
+      {/* HOUSEHOLD USE CASES */}
+      <section className="border-t border-white/5 bg-[#141414]">
+        <div className="container-x py-10">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="eyebrow text-paper/30 mr-4">Household tasks</span>
+            {[
+              "Dish washing",
+              "Laundry folding",
+              "Surface cleaning",
+              "Meal prep",
+              "Object sorting",
+              "Bin handling",
+              "Table setting",
+              "Drawer organisation",
+              "Vacuuming",
+              "Appliance use",
+            ].map((t) => (
+              <span key={t} className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-paper/60">
+                {t}
+              </span>
+            ))}
+            <span className="text-sm text-paper/30 ml-2">+ more</span>
+          </div>
         </div>
-        <div className="flex flex-col gap-8">
-          {blocks.map((b) => (
-            <BlockCard key={b.title} block={b} />
+      </section>
+
+      {/* OUR BELIEF */}
+      <section className="relative border-t border-white/5">
+        <div className="container-x py-28 md:py-40 grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
+          <div>
+            <div className="eyebrow text-[var(--violet)]">Our belief</div>
+            <h2 className="display-lg mt-4">The home is the final frontier.</h2>
+          </div>
+          <div className="space-y-6 text-lg leading-relaxed text-paper/80 max-w-2xl">
+            <p>We believe the next revolution in robotics won't happen in warehouses or factories. It will happen at home.</p>
+            <p>What made GPT a cultural moment wasn't the technology — it was mass market accessibility. Millions of people using it, every day, in their own lives. Robots will follow the same path.</p>
+            <p>We don't know which technology will get us there. World Models? VLAs? Something we haven't invented yet? What we know is this: whatever wins, it will need <span className="text-[var(--violet)]">data</span>. Real-world, contact-rich, home environment data. At scale.</p>
+            <p className="text-paper/60 border-l-2 border-[var(--violet)] pl-6">
+              To build this foundry, we had to solve a hard problem first: how do you make a robot autonomous on a task without months of engineering? From hours of demonstration to minutes. From months of engineering to days.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CARDS */}
+      <section className="container-x py-28 md:py-40">
+        <div className="eyebrow text-[var(--violet)] mb-6">Entry points</div>
+        <h2 className="display-lg max-w-3xl mb-16">Two doors into Lili-o.</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            { to: "/product", title: "The Foundry", line: "How we run robots 24/7 to generate the data Physical AI needs.", cta: "Explore the product", img: foundryImg },
+            { to: "/blog", title: "Blog", line: "Research updates, team posts, and thinking on household robotics and Physical AI.", cta: "Read the blog", img: researchImg },
+          ].map((c) => (
+            <Link
+              key={c.title}
+              to={c.to}
+              className="group relative rounded-2xl bg-[#141414] border border-white/10 hover:border-[var(--violet)] transition flex flex-col overflow-hidden"
+            >
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={c.img} alt="" loading="lazy" width={1280} height={960} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+              </div>
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-bold tracking-tight">{c.title}</h3>
+                <p className="mt-3 text-paper/60 flex-1">{c.line}</p>
+                <span className="mt-6 text-[var(--violet)] text-sm font-medium">{c.cta} →</span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
+
+      {/* DESIGN PARTNERS */}
+      <section className="bg-[#141414] border-y border-white/5">
+        <div className="container-x py-24 md:py-32">
+          <div className="eyebrow text-[var(--violet)] mb-6">Design partners</div>
+          <div className="grid md:grid-cols-[2fr_1fr] gap-16 items-end">
+            <div>
+              <h2 className="display-lg max-w-3xl">We're looking for the teams building household robots.</h2>
+              <p className="mt-8 max-w-xl text-lg text-paper/60 leading-relaxed">
+                We're opening the foundry to a small number of design partners — robotics companies and research labs who want early access to household manipulation data and are willing to help shape what we build.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-3">
+                {["Early data access", "Co-designed use cases", "Direct team access", "Priority support"].map((t) => (
+                  <span key={t} className="rounded-full border border-white/10 px-4 py-2 text-sm text-paper/60">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="border border-white/10 rounded-xl p-6">
+                <div className="text-2xl font-bold text-[var(--violet)]">5</div>
+                <div className="mt-1 text-sm text-paper/50">design partner slots open</div>
+              </div>
+              <div className="border border-white/10 rounded-xl p-6">
+                <div className="text-2xl font-bold text-[var(--violet)]">Q3 2025</div>
+                <div className="mt-1 text-sm text-paper/50">first data delivery target</div>
+              </div>
+              <Link to="/contact" className="rounded-xl bg-[var(--violet)] text-white px-6 py-4 font-medium text-center hover:bg-[var(--violet-dark)] transition">
+                Apply to be a design partner →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden">
+        <Pyramid className="absolute -right-20 -bottom-32 w-[520px] opacity-25 pointer-events-none" />
+        <div className="container-x py-32 md:py-44 relative text-center">
+          <h2 className="display-xl max-w-4xl mx-auto">
+            The household data <span className="text-[var(--violet)]">your robots</span> have been waiting for.
+          </h2>
+          <a href="#contact" className="mt-12 inline-flex rounded-xl bg-[var(--violet)] text-white px-10 py-5 font-medium text-lg hover:bg-[var(--violet-dark)] transition">
+            Request access
+          </a>
+        </div>
+      </section>
+
       <SiteFooter />
-    </main>
+    </div>
   );
 }

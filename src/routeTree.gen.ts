@@ -9,14 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProductRouteImport } from './routes/product'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DataQualityIndexRouteImport } from './routes/data-quality.index'
-import { Route as DataGenerationIndexRouteImport } from './routes/data-generation.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const ProductRoute = ProductRouteImport.update({
+  id: '/product',
+  path: '/product',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -24,58 +42,103 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DataQualityIndexRoute = DataQualityIndexRouteImport.update({
-  id: '/data-quality/',
-  path: '/data-quality/',
-  getParentRoute: () => rootRouteImport,
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
 } as any)
-const DataGenerationIndexRoute = DataGenerationIndexRouteImport.update({
-  id: '/data-generation/',
-  path: '/data-generation/',
-  getParentRoute: () => rootRouteImport,
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
-  '/data-generation/': typeof DataGenerationIndexRoute
-  '/data-quality/': typeof DataQualityIndexRoute
+  '/product': typeof ProductRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
-  '/data-generation': typeof DataGenerationIndexRoute
-  '/data-quality': typeof DataQualityIndexRoute
+  '/product': typeof ProductRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
-  '/data-generation/': typeof DataGenerationIndexRoute
-  '/data-quality/': typeof DataQualityIndexRoute
+  '/product': typeof ProductRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/data-generation/' | '/data-quality/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/blog'
+    | '/contact'
+    | '/product'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/data-generation' | '/data-quality'
-  id: '__root__' | '/' | '/contact' | '/data-generation/' | '/data-quality/'
+  to: '/' | '/admin' | '/contact' | '/product' | '/blog/$slug' | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/blog'
+    | '/contact'
+    | '/product'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
-  DataGenerationIndexRoute: typeof DataGenerationIndexRoute
-  DataQualityIndexRoute: typeof DataQualityIndexRoute
+  ProductRoute: typeof ProductRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -85,28 +148,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/data-quality/': {
-      id: '/data-quality/'
-      path: '/data-quality'
-      fullPath: '/data-quality/'
-      preLoaderRoute: typeof DataQualityIndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/blog/': {
+      id: '/blog/'
+      path: '/'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof BlogRoute
     }
-    '/data-generation/': {
-      id: '/data-generation/'
-      path: '/data-generation'
-      fullPath: '/data-generation/'
-      preLoaderRoute: typeof DataGenerationIndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
     }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
-  DataGenerationIndexRoute: DataGenerationIndexRoute,
-  DataQualityIndexRoute: DataQualityIndexRoute,
+  ProductRoute: ProductRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

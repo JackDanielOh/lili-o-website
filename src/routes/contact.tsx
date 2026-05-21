@@ -1,34 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { SiteNav, SiteFooter } from "@/components/site-chrome";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Pyramid } from "@/components/Pyramid";
 import { submitContact } from "@/lib/submit-contact";
-import logoNvidia from "@/assets/logos/nvidia.svg";
-import logoBpi from "@/assets/logos/bpifrance.svg";
-import logoAtalian from "@/assets/logos/atalian.svg";
-
-const TRUSTED = [
-  { name: "NVIDIA", src: logoNvidia },
-  { name: "BPIFrance", src: logoBpi },
-  { name: "Atalian", src: logoAtalian },
-];
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Book a Demo — Lili-o" },
-      { name: "description", content: "Get in touch with the Lili-o team to book a demo." },
+      { title: "Request Access — Lili-o" },
+      { name: "description", content: "Get in touch with the Lili-o team to request access to the Data Foundry." },
     ],
   }),
 });
 
 const BUDGETS = ["< $50K", "$50K – $300K", "$300K – $1M", "> $1M", "Not sure yet"];
-
-const SERVICES = [
-  "Data Providing",
-  "Data Management",
-];
+const SERVICES = ["Data Providing", "Data Management"];
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -42,38 +30,31 @@ function ContactPage() {
   }
 
   return (
-    <main className="relative overflow-x-clip">
-      <SiteNav />
+    <div className="theme-dark bg-ink text-paper min-h-screen">
+      <SiteHeader variant="dark" />
 
-      <section className="relative isolate overflow-hidden pt-24 pb-20">
-        <div className="absolute inset-0 -z-10 bg-hero-glow" />
-        <div className="px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-secondary">Get in Touch</p>
-          <h1 className="mt-4 max-w-4xl text-5xl leading-[1.05] text-gradient md:text-7xl">
-            Let's accelerate your{" "}
-            <span className="text-gradient-purple">robotic deployment</span>.
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-white/5">
+        <Pyramid className="absolute -top-16 right-[-6rem] w-[460px] opacity-20 pointer-events-none" />
+        <div className="container-x pt-24 md:pt-36 pb-24 md:pb-32 relative">
+          <div className="eyebrow text-[var(--violet)] mb-8">// Get in touch</div>
+          <h1 className="display-xl max-w-4xl">
+            Request access to the <span className="text-[var(--violet)]">Data Foundry</span>.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
             Tell us about your robot, your task and your data needs. We'll get back to you within 48 hours.
           </p>
         </div>
       </section>
 
-      <section className="px-6 pb-32">
-        <div className="mx-auto max-w-2xl">
-
-          {/* Form */}
+      {/* FORM */}
+      <section className="container-x py-24 md:py-32">
+        <div className="max-w-2xl">
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              if (!budget) {
-                setError("Please select a project budget.");
-                return;
-              }
-              if (services.length === 0) {
-                setError("Please select at least one service.");
-                return;
-              }
+              if (!budget) { setError("Please select a project budget."); return; }
+              if (services.length === 0) { setError("Please select at least one service."); return; }
               setLoading(true);
               setError("");
               const fd = new FormData(e.currentTarget);
@@ -101,15 +82,15 @@ function ContactPage() {
                 setLoading(false);
               }
             }}
-            className="space-y-8 rounded-3xl border border-white/10 bg-card p-8 md:p-10"
+            className="space-y-8 rounded-2xl border border-white/10 bg-[#141414] p-8 md:p-10"
           >
             {submitted ? (
               <div className="py-16 text-center">
-                <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full bg-gradient-purple shadow-[var(--shadow-glow)]">
-                  <ArrowRight className="h-5 w-5 text-white" />
+                <div className="mx-auto mb-6 grid h-14 w-14 place-items-center bg-[var(--violet)]">
+                  <span className="text-white text-2xl">✓</span>
                 </div>
-                <h3 className="text-2xl">Thanks — we'll be in touch.</h3>
-                <p className="mt-3 text-muted-foreground">Expect a reply within 48 hours.</p>
+                <h3 className="text-2xl font-bold">Thanks — we'll be in touch.</h3>
+                <p className="mt-3 text-paper/60">Expect a reply within 48 hours.</p>
               </div>
             ) : (
               <>
@@ -128,21 +109,18 @@ function ContactPage() {
 
                 {/* Budget */}
                 <div>
-                  <p className="mb-3 text-sm font-medium">
-                    Project budget *
-                  </p>
+                  <p className="mb-3 text-sm font-medium eyebrow text-paper/60">Project budget *</p>
                   <div className="flex flex-wrap gap-2">
                     {BUDGETS.map((b) => (
                       <button
                         key={b}
                         type="button"
                         onClick={() => setBudget(b === budget ? "" : b)}
-                        className={[
-                          "rounded-full border px-4 py-2 text-sm transition",
+                        className={`rounded-lg border px-4 py-2 text-sm transition ${
                           budget === b
-                            ? "border-secondary bg-secondary/10 text-secondary"
-                            : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20 hover:text-foreground",
-                        ].join(" ")}
+                            ? "border-[var(--violet)] bg-[var(--violet)]/10 text-[var(--violet)]"
+                            : "border-white/10 text-paper/50 hover:border-white/30 hover:text-paper"
+                        }`}
                       >
                         {b}
                       </button>
@@ -152,9 +130,7 @@ function ContactPage() {
 
                 {/* Services */}
                 <div>
-                  <p className="mb-3 text-sm font-medium">
-                    What can we help with? *
-                  </p>
+                  <p className="mb-3 text-sm font-medium eyebrow text-paper/60">What can we help with? *</p>
                   <div className="flex gap-2">
                     {SERVICES.map((s) => {
                       const active = services.includes(s);
@@ -163,12 +139,11 @@ function ContactPage() {
                           key={s}
                           type="button"
                           onClick={() => toggleService(s)}
-                          className={[
-                            "rounded-xl border px-4 py-3 text-left text-sm transition",
+                          className={`rounded-lg border px-4 py-3 text-sm transition ${
                             active
-                              ? "border-secondary bg-secondary/10 text-secondary"
-                              : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20 hover:text-foreground",
-                          ].join(" ")}
+                              ? "border-[var(--violet)] bg-[var(--violet)]/10 text-[var(--violet)]"
+                              : "border-white/10 text-paper/50 hover:border-white/30 hover:text-paper"
+                          }`}
                         >
                           {s}
                         </button>
@@ -180,26 +155,24 @@ function ContactPage() {
                 {/* Message */}
                 <div>
                   <label className="text-sm font-medium">
-                    Tell us more{" "}
-                    <span className="text-muted-foreground">(optional)</span>
+                    Tell us more <span className="text-paper/40">(optional)</span>
                   </label>
                   <textarea
                     name="message"
                     rows={4}
                     placeholder="Describe your robot, task, and data challenge…"
-                    className="mt-2 w-full rounded-xl border border-white/10 bg-background/50 px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/50 focus:border-secondary/60"
+                    className="mt-2 w-full rounded-lg border border-white/10 bg-ink px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/30 focus:border-[var(--violet)]/60"
                   />
                 </div>
 
-                {error && (
-                  <p className="text-sm text-destructive">{error}</p>
-                )}
+                {error && <p className="text-sm text-red-400">{error}</p>}
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-purple px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="rounded-xl bg-[var(--violet)] text-white px-8 py-4 font-medium hover:bg-[var(--violet-dark)] transition disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Sending…" : "Book a Demo"} <ArrowRight className="h-4 w-4" />
+                  {loading ? "Sending…" : "Request access →"}
                 </button>
               </>
             )}
@@ -208,7 +181,7 @@ function ContactPage() {
       </section>
 
       <SiteFooter />
-    </main>
+    </div>
   );
 }
 
@@ -216,21 +189,19 @@ function Field({
   label,
   name,
   type = "text",
-  required = true,
 }: {
   label: string;
   name: string;
   type?: string;
-  required?: boolean;
 }) {
   return (
     <div>
-      <label className="text-sm font-medium">{label}</label>
+      <label className="text-sm font-medium text-paper/80">{label}</label>
       <input
         type={type}
         name={name}
-        required={required}
-        className="mt-2 w-full rounded-xl border border-white/10 bg-background/50 px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/50 focus:border-secondary/60"
+        required
+        className="mt-2 w-full border border-white/10 bg-ink px-4 py-3 text-sm text-paper outline-none transition placeholder:text-paper/30 focus:border-[var(--violet)]/60"
       />
     </div>
   );
