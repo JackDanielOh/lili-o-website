@@ -1,8 +1,10 @@
+import { lazy, Suspense } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
-import heroImg from "@/assets/hero2.png";
+import GradientText from "@/components/GradientText/GradientText";
+const Dither = lazy(() => import("@/components/Dither/Dither"));
 import foundryImg from "@/assets/foundry.jpg";
 import researchImg from "@/assets/research.jpg";
 
@@ -23,20 +25,47 @@ function Home() {
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
 
-      {/* HERO */}
+      {/* HERO — image → Dither → content */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroImg} alt="" className="w-full h-full object-cover opacity-80" width={1600} height={1100} />
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/10 via-ink/40 to-ink" />
+        <div className="absolute inset-0 z-0">
+          <img src="/hero-landing.webp" alt="" className="w-full h-full object-cover opacity-80" width={1600} height={1100} />
         </div>
-        <Pyramid className="absolute -bottom-20 right-[-6rem] w-[480px] opacity-30 pointer-events-none" />
-        <div className="container-x relative pt-28 md:pt-40 pb-32 md:pb-48">
-          <div className="eyebrow text-[var(--violet)] mb-8">// Household Robotics Data</div>
-          <h1 className="display-xl max-w-5xl">
-            The only <span className="text-[var(--violet)]">Data Foundry</span> built for household robots.
+        <div className="absolute inset-0 z-10 opacity-60">
+          <Suspense fallback={null}>
+            <Dither
+              waveColor={[0.32, 0.15, 1]}
+              disableAnimation={false}
+              enableMouseInteraction={true}
+              mouseRadius={0.2}
+              colorNum={4}
+              waveAmplitude={0.3}
+              waveFrequency={1}
+              waveSpeed={0.04}
+            />
+          </Suspense>
+        </div>
+        <div className="absolute inset-0 z-20 bg-gradient-to-b from-ink/10 via-ink/40 to-ink pointer-events-none" aria-hidden />
+        <Pyramid className="absolute -bottom-20 right-[-6rem] z-20 w-[480px] opacity-30 pointer-events-none" />
+        <div className="container-x relative z-30 pt-28 md:pt-40 pb-32 md:pb-48">
+          <div
+            className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/25 px-4 py-2.5 backdrop-blur-sm"
+            aria-label="Antler VC backed"
+          >
+            <span className="text-sm font-medium text-paper/85">Invested By Global VC</span>
+            <img src="/antler-logo.svg" alt="" className="h-[18px] w-auto shrink-0" width={75} height={18} />
+          </div>
+          <h1 className="display-xl max-w-4xl">
+            World's first <span className="text-[var(--violet)]">24/7 Data Foundry</span> for household.
           </h1>
           <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-            We run robots 24/7 in real home environments — kitchens, living rooms, bathrooms — generating the contact-rich, household-specific training data Physical AI needs.
+            <GradientText
+              colors={["#5227FF", "#FF9FFC", "#B497CF"]}
+              animationSpeed={8}
+              showBorder={false}
+            >
+              Autonomous data foundry
+            </GradientText>{" "}
+            running robots in real home environments to generate contact-rich, household-specific training data Physical AI needs.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#contact" className="rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition">
