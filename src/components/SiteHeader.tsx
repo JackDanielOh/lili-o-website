@@ -49,6 +49,7 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           </NavLink>
           <NavLink to="/product">Product</NavLink>
           <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/recruitment">Careers</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </nav>
         <Link
@@ -76,6 +77,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           </NavLink>
           <NavLink to="/blog" onClick={() => setOpen(false)}>
             Blog
+          </NavLink>
+          <NavLink to="/recruitment" onClick={() => setOpen(false)}>
+            Careers
           </NavLink>
           <NavLink to="/contact" onClick={() => setOpen(false)}>
             Contact

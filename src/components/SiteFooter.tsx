@@ -21,6 +21,7 @@ export function SiteFooter() {
             <li><Link to="/" className="hover:text-[var(--violet)]">Home</Link></li>
             <li><Link to="/product" className="hover:text-[var(--violet)]">Product</Link></li>
             <li><Link to="/blog" className="hover:text-[var(--violet)]">Blog</Link></li>
+            <li><Link to="/recruitment" className="hover:text-[var(--violet)]">Careers</Link></li>
           </ul>
         </div>
         <div>
