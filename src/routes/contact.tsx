@@ -16,7 +16,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const BUDGETS = ["< $50K", "$50K – $300K", "$300K – $1M", "> $1M", "Not sure yet"];
-const SERVICES = ["Data Providing", "Data Management"];
+const SERVICES = ["Data Providing", "Data Management", "Zero Shot Software"];
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -33,23 +33,31 @@ function ContactPage() {
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
 
-      {/* HERO */}
       <section className="relative overflow-hidden border-b border-white/5">
-        <Pyramid className="absolute -top-16 right-[-6rem] w-[460px] opacity-20 pointer-events-none" />
-        <div className="container-x pt-24 md:pt-36 pb-24 md:pb-32 relative">
-          <div className="eyebrow text-[var(--violet)] mb-8">// Get in touch</div>
-          <h1 className="display-xl max-w-4xl">
-            Request access to the <span className="text-[var(--violet)]">Data Foundry</span>.
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-            Tell us about your robot, your task and your data needs. We'll get back to you within 48 hours.
-          </p>
-        </div>
-      </section>
+        <Pyramid className="absolute -top-8 right-[-4rem] w-[280px] md:w-[360px] lg:right-0 lg:w-[420px] opacity-15 pointer-events-none" />
+        <div className="container-x relative pt-20 pb-16 md:pt-24 md:pb-20">
+          <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
+            <div className="mb-8 lg:mb-0 lg:sticky lg:top-24 lg:max-w-md">
+              <div className="eyebrow text-[var(--violet)] mb-3">// Get in touch</div>
+              <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.05]">
+                Request access to the <span className="text-[var(--violet)]">Data Foundry</span>
+              </h1>
+              <p className="mt-4 text-base text-paper/70 leading-relaxed md:text-lg">
+                Tell us about your robot, task, and data needs. We reply within 48 hours.
+              </p>
+              <p className="mt-4 text-sm text-paper/50 lg:mt-6">
+                <span className="lg:hidden">↓ </span>
+                Complete the form
+                <span className="hidden lg:inline"> to get started</span>
+                {" — or email "}
+                <a href="mailto:hello@lili-o.com" className="text-[var(--violet)] hover:underline">
+                  hello@lili-o.com
+                </a>
+                .
+              </p>
+            </div>
 
-      {/* FORM */}
-      <section className="container-x py-24 md:py-32">
-        <div className="max-w-2xl">
+            <div id="contact-form" className="min-w-0">
           <form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -82,7 +90,7 @@ function ContactPage() {
                 setLoading(false);
               }
             }}
-            className="space-y-8 rounded-2xl border border-white/10 bg-[#141414] p-8 md:p-10"
+            className="space-y-8 rounded-2xl border border-white/10 bg-[#141414] p-6 md:p-8 lg:p-10"
           >
             {submitted ? (
               <div className="py-16 text-center">
@@ -94,6 +102,13 @@ function ContactPage() {
               </div>
             ) : (
               <>
+                <div className="border-b border-white/10 pb-6">
+                  <h2 className="text-lg font-semibold tracking-tight">Request access</h2>
+                  <p className="mt-1 text-sm text-paper/50">
+                    Fill in your details below — all fields marked * are required.
+                  </p>
+                </div>
+
                 {/* Name + Email */}
                 <div className="space-y-5">
                   <div className="grid gap-5 md:grid-cols-2">
@@ -131,7 +146,7 @@ function ContactPage() {
                 {/* Services */}
                 <div>
                   <p className="mb-3 text-sm font-medium eyebrow text-paper/60">What can we help with? *</p>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {SERVICES.map((s) => {
                       const active = services.includes(s);
                       return (
@@ -177,6 +192,8 @@ function ContactPage() {
               </>
             )}
           </form>
+            </div>
+          </div>
         </div>
       </section>
 
