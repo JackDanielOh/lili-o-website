@@ -39,23 +39,8 @@ function Product() {
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden border-b border-white/5">
-        <Pyramid className="absolute -top-20 -right-32 w-[520px] opacity-20 pointer-events-none" />
-        <div className="container-x pt-24 md:pt-36 pb-24 md:pb-32 relative">
-          <div className="eyebrow text-[var(--violet)] mb-8">// The Foundry</div>
-          <h1 className="display-xl max-w-5xl">The Foundry — how we make data.</h1>
-          <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-            Robots running use cases autonomously. Real home environments. Zero human operators. 24/7.
-          </p>
-          <a href="#contact" className="mt-10 inline-flex rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition">
-            Request access
-          </a>
-        </div>
-      </section>
-
       {/* FOUNDRY */}
-      <section className="container-x py-28 md:py-36 grid md:grid-cols-2 gap-16 items-center">
+      <section className="container-x pt-24 md:pt-36 pb-28 md:pb-36 grid md:grid-cols-2 gap-16 items-center border-b border-white/5">
         <div>
           <div className="eyebrow text-[var(--violet)] mb-6">Approach</div>
           <h2 className="display-lg">The industry collects data by hand. We automated it.</h2>

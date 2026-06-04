@@ -109,7 +109,8 @@ function Home() {
         <div className="container-x py-28 md:py-40 grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
           <div>
             <div className="eyebrow text-[var(--violet)]">Our belief</div>
-            <h2 className="display-lg mt-4">The home is the final frontier.</h2>
+            <h2 className="display-lg mt-4">Household </h2>
+            <h2 className="display-lg mt-0">is the final frontier.</h2>
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-paper/80 max-w-2xl">
             <p>We believe the next revolution in robotics won't happen in warehouses or factories. It will happen at home.</p>
