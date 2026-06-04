@@ -1,6 +1,34 @@
-import { Link } from "@tanstack/react-router";
+import { Link, type LinkProps } from "@tanstack/react-router";
 import { useState } from "react";
 import logoImg from "@/assets/logos/Logo Primaire.svg";
+
+const navLinkClass =
+  "font-semibold opacity-80 hover:opacity-100 transition pb-1 border-b-2 border-transparent";
+const navLinkActiveClass = "opacity-100 text-[var(--violet)] border-[var(--violet)]";
+
+function NavLink({
+  to,
+  children,
+  exact,
+  onClick,
+}: {
+  to: LinkProps["to"];
+  children: React.ReactNode;
+  exact?: boolean;
+  onClick?: () => void;
+}) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      activeOptions={exact ? { exact: true } : undefined}
+      className={navLinkClass}
+      activeProps={{ className: navLinkActiveClass }}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const [open, setOpen] = useState(false);
@@ -16,19 +44,18 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <img src={logoImg} alt="Lili-o" className="h-9 w-auto brightness-0 invert" />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm">
-          <Link to="/product" className="opacity-80 hover:opacity-100 transition" activeProps={{ className: "opacity-100 text-[var(--violet)]" }}>
-            Product
-          </Link>
-          <Link to="/blog" className="opacity-80 hover:opacity-100 transition" activeProps={{ className: "opacity-100 text-[var(--violet)]" }}>
-            Blog
-          </Link>
-          <Link to="/contact" className="opacity-80 hover:opacity-100 transition" activeProps={{ className: "opacity-100 text-[var(--violet)]" }}>Contact</Link>
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
+          <NavLink to="/product">Product</NavLink>
+          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </nav>
         <Link
           to="/contact"
           className="hidden md:inline-flex items-center rounded-lg bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--violet-dark)] transition"
         >
-          Request access
+          Book Demo
         </Link>
         <button
           aria-label="Menu"
@@ -40,10 +67,22 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
         </button>
       </div>
       {open && (
-        <div className={`md:hidden ${isDark ? "bg-ink" : "bg-background"} border-t border-white/5 px-6 py-6 flex flex-col gap-4`}>
-          <Link to="/product" onClick={() => setOpen(false)}>Product</Link>
-          <Link to="/blog" onClick={() => setOpen(false)}>Blog</Link>
-          <Link to="/contact" onClick={() => setOpen(false)} className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit">Request access</Link>
+        <div className={`md:hidden ${isDark ? "bg-ink" : "bg-background"} border-t border-white/5 px-6 py-6 flex flex-col gap-4 font-semibold`}>
+          <NavLink to="/" exact onClick={() => setOpen(false)}>
+            Home
+          </NavLink>
+          <NavLink to="/product" onClick={() => setOpen(false)}>
+            Product
+          </NavLink>
+          <NavLink to="/blog" onClick={() => setOpen(false)}>
+            Blog
+          </NavLink>
+          <NavLink to="/contact" onClick={() => setOpen(false)}>
+            Contact
+          </NavLink>
+          <Link to="/contact" onClick={() => setOpen(false)} className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit">
+            Book Demo
+          </Link>
         </div>
       )}
     </header>
