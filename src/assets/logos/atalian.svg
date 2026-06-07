@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" fill="none">
-  <!-- Stylised A mark -->
-  <path d="M8 38 L18 10 L28 38" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <line x1="11" y1="28" x2="25" y2="28" stroke="white" stroke-width="3" stroke-linecap="round"/>
-  <!-- atalian text -->
-  <text x="36" y="34" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" fill="white">atalian</text>
-</svg>

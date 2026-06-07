@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-
-const NOTION_DB = "7e14dc3159cb496fa50b4c89d39cfafc";
+import { notionFetch } from "@/lib/notion";
 
 export type ContactPayload = {
   firstName: string;
@@ -18,17 +17,14 @@ export const submitContact = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const token = process.env.NOTION_TOKEN;
+      const db = process.env.NOTION_CONTACT_DB;
       if (!token) return { ok: false, error: "NOTION_TOKEN is not set" };
+      if (!db) return { ok: false, error: "NOTION_CONTACT_DB is not set" };
 
-      const res = await fetch("https://api.notion.com/v1/pages", {
+      const res = await notionFetch("/pages", {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          "Notion-Version": "2022-06-28",
-        },
         body: JSON.stringify({
-          parent: { database_id: NOTION_DB },
+          parent: { database_id: db },
           properties: {
             Name: {
               title: [{ text: { content: `${data.firstName} ${data.lastName}` } }],

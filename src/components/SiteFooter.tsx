@@ -18,10 +18,26 @@ export function SiteFooter() {
         <div>
           <div className="eyebrow text-paper/40 mb-4">Navigate</div>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/" className="hover:text-[var(--violet)]">Home</Link></li>
-            <li><Link to="/product" className="hover:text-[var(--violet)]">Product</Link></li>
-            <li><Link to="/blog" className="hover:text-[var(--violet)]">Blog</Link></li>
-            <li><Link to="/recruitment" className="hover:text-[var(--violet)]">Careers</Link></li>
+            <li>
+              <Link to="/" className="hover:text-[var(--violet)]">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/product" className="hover:text-[var(--violet)]">
+                Product
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className="hover:text-[var(--violet)]">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link to="/recruitment" className="hover:text-[var(--violet)]">
+                Careers
+              </Link>
+            </li>
           </ul>
         </div>
         <div>

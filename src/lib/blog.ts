@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { notionFetch, type NotionPage, type NotionPropertyValue } from "@/lib/notion";
 
 export type BlogPost = {
   id: string;
@@ -15,20 +16,7 @@ export type BlogPost = {
 
 export type CreatePostInput = Omit<BlogPost, "id" | "publishedAt">;
 
-async function notionFetch(path: string, options: RequestInit = {}) {
-  const token = process.env.NOTION_TOKEN;
-  return fetch(`https://api.notion.com/v1${path}`, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "Notion-Version": "2022-06-28",
-      ...(options.headers ?? {}),
-    },
-  });
-}
-
-function pageToPost(page: any): BlogPost {
+function pageToPost(page: NotionPage): BlogPost {
   const p = page.properties;
   return {
     id: page.id,
@@ -39,8 +27,8 @@ function pageToPost(page: any): BlogPost {
     content: p.Content?.rich_text?.[0]?.text?.content ?? "",
     image: p.Image?.url ?? "",
     featured: p.Featured?.checkbox ?? false,
-    publishedAt: p.Published?.date?.start ?? page.created_time?.split("T")[0],
-    status: p.Status?.select?.name ?? "Draft",
+    publishedAt: p.Published?.date?.start ?? page.created_time?.split("T")[0] ?? "",
+    status: (p.Status?.select?.name === "Published" ? "Published" : "Draft") as BlogPost["status"],
   };
 }
 
@@ -105,7 +93,8 @@ export const createPost = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const token = process.env.NOTION_TOKEN;
     const db = process.env.NOTION_BLOG_DB;
-    if (!token || !db) return { ok: false, error: "Notion not configured — set NOTION_TOKEN and NOTION_BLOG_DB" };
+    if (!token || !db)
+      return { ok: false, error: "Notion not configured — set NOTION_TOKEN and NOTION_BLOG_DB" };
 
     const res = await notionFetch("/pages", {
       method: "POST",
@@ -139,13 +128,18 @@ export const updatePost = createServerFn({ method: "POST" })
     if (!token) return { ok: false, error: "NOTION_TOKEN not set" };
 
     const { id, ...fields } = data;
-    const properties: Record<string, any> = {};
-    if (fields.title !== undefined) properties.Title = { title: [{ text: { content: fields.title } }] };
-    if (fields.slug !== undefined) properties.Slug = { rich_text: [{ text: { content: fields.slug } }] };
+    const properties: Record<string, NotionPropertyValue> = {};
+    if (fields.title !== undefined)
+      properties.Title = { title: [{ text: { content: fields.title } }] };
+    if (fields.slug !== undefined)
+      properties.Slug = { rich_text: [{ text: { content: fields.slug } }] };
     if (fields.tag !== undefined) properties.Tag = { select: { name: fields.tag } };
-    if (fields.excerpt !== undefined) properties.Excerpt = { rich_text: [{ text: { content: fields.excerpt } }] };
-    if (fields.content !== undefined) properties.Content = { rich_text: [{ text: { content: fields.content } }] };
-    if (fields.image !== undefined) properties.Image = fields.image ? { url: fields.image } : { url: null };
+    if (fields.excerpt !== undefined)
+      properties.Excerpt = { rich_text: [{ text: { content: fields.excerpt } }] };
+    if (fields.content !== undefined)
+      properties.Content = { rich_text: [{ text: { content: fields.content } }] };
+    if (fields.image !== undefined)
+      properties.Image = fields.image ? { url: fields.image } : { url: null };
     if (fields.featured !== undefined) properties.Featured = { checkbox: fields.featured };
     if (fields.status !== undefined) properties.Status = { select: { name: fields.status } };
 

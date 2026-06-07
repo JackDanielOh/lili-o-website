@@ -83,13 +83,21 @@ export default function GradientText({
   }, [pauseOnHover]);
 
   const gradientAngle =
-    direction === "horizontal" ? "to right" : direction === "vertical" ? "to bottom" : "to bottom right";
+    direction === "horizontal"
+      ? "to right"
+      : direction === "vertical"
+        ? "to bottom"
+        : "to bottom right";
   const gradientColors = [...colors, colors[0]].join(", ");
 
   const gradientStyle = {
     backgroundImage: `linear-gradient(${gradientAngle}, ${gradientColors})`,
     backgroundSize:
-      direction === "horizontal" ? "300% 100%" : direction === "vertical" ? "100% 300%" : "300% 300%",
+      direction === "horizontal"
+        ? "300% 100%"
+        : direction === "vertical"
+          ? "100% 300%"
+          : "300% 300%",
     backgroundRepeat: "repeat" as const,
   };
 

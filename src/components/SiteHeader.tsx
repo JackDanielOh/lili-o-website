@@ -36,7 +36,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
   return (
     <header
       className={`sticky top-0 z-50 backdrop-blur-md ${
-        isDark ? "bg-ink/70 text-paper border-b border-white/5" : "bg-background/80 text-foreground border-b border-border"
+        isDark
+          ? "bg-ink/70 text-paper border-b border-white/5"
+          : "bg-background/80 text-foreground border-b border-border"
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
@@ -68,7 +70,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
         </button>
       </div>
       {open && (
-        <div className={`md:hidden ${isDark ? "bg-ink" : "bg-background"} border-t border-white/5 px-6 py-6 flex flex-col gap-4 font-semibold`}>
+        <div
+          className={`md:hidden ${isDark ? "bg-ink" : "bg-background"} border-t border-white/5 px-6 py-6 flex flex-col gap-4 font-semibold`}
+        >
           <NavLink to="/" exact onClick={() => setOpen(false)}>
             Home
           </NavLink>
@@ -84,7 +88,11 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink to="/contact" onClick={() => setOpen(false)}>
             Contact
           </NavLink>
-          <Link to="/contact" onClick={() => setOpen(false)} className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit">
+          <Link
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit"
+          >
             Book Demo
           </Link>
         </div>

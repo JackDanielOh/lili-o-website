@@ -1,8 +1,0 @@
-node_modules
-.vinxi
-.wrangler
-.git
-.env
-dist
-*.mov
-*.mp4

@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   HeadContent,
   Scripts,
@@ -68,16 +67,23 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lili-o — The autonomous Data Foundry for Physical AI" },
-      { name: "description", content: "We run robots 24/7 in home environments to generate the training data Physical AI needs." },
+      {
+        name: "description",
+        content:
+          "We run robots 24/7 in home environments to generate the training data Physical AI needs.",
+      },
       { name: "author", content: "Lili-o" },
       { property: "og:title", content: "Lili-o — Data Foundry for Physical AI" },
-      { property: "og:description", content: "Autonomous data generation for the next era of robotics." },
+      {
+        property: "og:description",
+        content: "Autonomous data generation for the next era of robotics.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -107,11 +113,5 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-    </QueryClientProvider>
-  );
+  return <Outlet />;
 }

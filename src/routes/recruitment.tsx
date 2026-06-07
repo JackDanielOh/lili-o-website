@@ -7,9 +7,15 @@ export const Route = createFileRoute("/recruitment")({
   head: () => ({
     meta: [
       { title: "Careers — Lili-o" },
-      { name: "description", content: "Join Lili-o and help build the autonomous Data Foundry for Physical AI." },
+      {
+        name: "description",
+        content: "Join Lili-o and help build the autonomous Data Foundry for Physical AI.",
+      },
       { property: "og:title", content: "Careers — Lili-o" },
-      { property: "og:description", content: "We're building the team that will bring household robotics data to scale." },
+      {
+        property: "og:description",
+        content: "We're building the team that will bring household robotics data to scale.",
+      },
     ],
   }),
   component: RecruitmentPage,
@@ -44,10 +50,12 @@ function RecruitmentPage() {
         <div className="container-x pt-24 md:pt-36 pb-24 md:pb-32 relative">
           <div className="eyebrow text-[var(--violet)] mb-8">// Careers</div>
           <h1 className="display-xl max-w-5xl">
-            Help us build the <span className="text-[var(--violet)]">Data Foundry</span> for Physical AI.
+            Help us build the <span className="text-[var(--violet)]">Data Foundry</span> for
+            Physical AI.
           </h1>
           <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-            We're assembling a small team of engineers, researchers, and operators who want to solve one of the hardest problems in robotics — at home, at scale.
+            We're assembling a small team of engineers, researchers, and operators who want to solve
+            one of the hardest problems in robotics — at home, at scale.
           </p>
         </div>
       </section>
@@ -61,10 +69,13 @@ function RecruitmentPage() {
           </div>
           <div className="space-y-6 text-lg leading-relaxed text-paper/80 max-w-2xl">
             <p>
-              Lili-o runs robots 24/7 in real home environments to generate the training data Physical AI needs. We're backed by global investors and working with design partners who are building the next generation of household robots.
+              Lili-o runs robots 24/7 in real home environments to generate the training data
+              Physical AI needs. We're backed by global investors and working with design partners
+              who are building the next generation of household robots.
             </p>
             <p className="text-paper/60">
-              If you're excited about robotics, autonomy, or data at scale — and you want to work on problems that matter — we'd love to hear from you.
+              If you're excited about robotics, autonomy, or data at scale — and you want to work on
+              problems that matter — we'd love to hear from you.
             </p>
           </div>
         </div>
@@ -86,16 +97,20 @@ function RecruitmentPage() {
           <div className="eyebrow text-[var(--violet)] mb-6">Open roles</div>
           <h2 className="display-lg max-w-3xl">Current openings.</h2>
           <p className="mt-8 max-w-2xl text-lg text-paper/70 leading-relaxed">
-            We don't have any open positions right now, but we're always interested in meeting exceptional people.
+            We don't have any open positions right now, but we're always interested in meeting
+            exceptional people.
           </p>
 
           <div className="mt-14 rounded-2xl border border-white/10 border-dashed p-12 md:p-16 text-center">
             <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full border border-white/10 bg-ink">
-              <span className="text-2xl text-paper/40" aria-hidden>—</span>
+              <span className="text-2xl text-paper/40" aria-hidden>
+                —
+              </span>
             </div>
             <h3 className="text-2xl font-bold tracking-tight">No open positions yet</h3>
             <p className="mt-4 max-w-md mx-auto text-paper/60 leading-relaxed">
-              We're not actively hiring for specific roles at the moment. Check back soon — or reach out if you'd like to introduce yourself for future opportunities.
+              We're not actively hiring for specific roles at the moment. Check back soon — or reach
+              out if you'd like to introduce yourself for future opportunities.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <a
@@ -131,13 +146,17 @@ function RecruitmentPage() {
             "Research & experimentation",
             "Operations & logistics",
           ].map((t) => (
-            <span key={t} className="rounded-full border border-white/10 px-4 py-2 text-sm text-paper/60">
+            <span
+              key={t}
+              className="rounded-full border border-white/10 px-4 py-2 text-sm text-paper/60"
+            >
               {t}
             </span>
           ))}
         </div>
         <p className="mt-10 max-w-2xl text-paper/60 leading-relaxed">
-          When we do open roles, they'll likely sit across these areas. If any of this sounds like you, we'd still love to hear from you — even before a job goes live.
+          When we do open roles, they'll likely sit across these areas. If any of this sounds like
+          you, we'd still love to hear from you — even before a job goes live.
         </p>
       </section>
 

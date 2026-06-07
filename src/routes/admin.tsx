@@ -94,7 +94,10 @@ const emptyForm: CreatePostInput = {
 };
 
 function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 function PostForm({
@@ -108,17 +111,26 @@ function PostForm({
 }) {
   const [form, setForm] = useState<CreatePostInput>(
     initial
-      ? { title: initial.title, slug: initial.slug, tag: initial.tag, excerpt: initial.excerpt, content: initial.content, image: initial.image, featured: initial.featured, status: initial.status }
-      : emptyForm
+      ? {
+          title: initial.title,
+          slug: initial.slug,
+          tag: initial.tag,
+          excerpt: initial.excerpt,
+          content: initial.content,
+          image: initial.image,
+          featured: initial.featured,
+          status: initial.status,
+        }
+      : emptyForm,
   );
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof CreatePostInput | "_", string>>>({});
   const isEditing = !!initial;
 
-  function set(key: keyof CreatePostInput, value: any) {
+  function set<K extends keyof CreatePostInput>(key: K, value: CreatePostInput[K]) {
     setForm((f) => {
       const next = { ...f, [key]: value };
-      if (key === "title" && !isEditing) next.slug = slugify(value);
+      if (key === "title" && !isEditing && typeof value === "string") next.slug = slugify(value);
       return next;
     });
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
@@ -131,7 +143,10 @@ function PostForm({
     if (!form.slug.trim()) next.slug = "Slug is required.";
     if (!form.excerpt.trim()) next.excerpt = "Excerpt is required.";
     if (!form.content.trim()) next.content = "Content is required.";
-    if (Object.keys(next).length) { setErrors(next); return; }
+    if (Object.keys(next).length) {
+      setErrors(next);
+      return;
+    }
     setLoading(true);
     setErrors({});
     const result = isEditing
@@ -149,7 +164,9 @@ function PostForm({
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Title */}
       <div>
-        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">Title *</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">
+          Title *
+        </label>
         <input
           type="text"
           value={form.title}
@@ -183,11 +200,17 @@ function PostForm({
             className="mt-1.5 w-full rounded-lg border border-white/10 bg-ink px-4 py-3 text-sm text-paper outline-none focus:border-[var(--violet)]/60"
           >
             <option value="">— select —</option>
-            {TAGS.map((t) => <option key={t} value={t}>{t}</option>)}
+            {TAGS.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
           </select>
         </div>
         <div>
-          <label className="text-xs font-medium uppercase tracking-wider text-paper/50">Status</label>
+          <label className="text-xs font-medium uppercase tracking-wider text-paper/50">
+            Status
+          </label>
           <select
             value={form.status}
             onChange={(e) => set("status", e.target.value as "Draft" | "Published")}
@@ -201,7 +224,9 @@ function PostForm({
 
       {/* Image URL */}
       <div>
-        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">Image URL</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">
+          Image URL
+        </label>
         <input
           type="url"
           value={form.image}
@@ -213,7 +238,9 @@ function PostForm({
 
       {/* Excerpt */}
       <div>
-        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">Excerpt *</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">
+          Excerpt *
+        </label>
         <textarea
           value={form.excerpt}
           onChange={(e) => set("excerpt", e.target.value)}
@@ -226,7 +253,9 @@ function PostForm({
 
       {/* Content */}
       <div>
-        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">Content *</label>
+        <label className="text-xs font-medium uppercase tracking-wider text-paper/50">
+          Content *
+        </label>
         <textarea
           value={form.content}
           onChange={(e) => set("content", e.target.value)}
@@ -259,7 +288,11 @@ function PostForm({
           {loading ? "Saving…" : isEditing ? "Save changes" : "Create post"}
         </button>
         {onCancel && (
-          <button type="button" onClick={onCancel} className="rounded-xl border border-white/10 px-6 py-3 text-sm text-paper/60 hover:border-white/30 transition">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="rounded-xl border border-white/10 px-6 py-3 text-sm text-paper/60 hover:border-white/30 transition"
+          >
             Cancel
           </button>
         )}
@@ -282,7 +315,9 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     setLoading(false);
   }
 
-  useEffect(() => { loadPosts(); }, []);
+  useEffect(() => {
+    loadPosts();
+  }, []);
 
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
@@ -318,7 +353,10 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
           <div className="rounded-2xl border border-white/10 bg-[#141414] p-8 mb-10">
             <h2 className="text-xl font-bold mb-6">New post</h2>
             <PostForm
-              onSave={() => { setView("list"); loadPosts(); }}
+              onSave={() => {
+                setView("list");
+                loadPosts();
+              }}
               onCancel={() => setView("list")}
             />
           </div>
@@ -330,7 +368,10 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
             <h2 className="text-xl font-bold mb-6">Edit post</h2>
             <PostForm
               initial={view.edit}
-              onSave={() => { setView("list"); loadPosts(); }}
+              onSave={() => {
+                setView("list");
+                loadPosts();
+              }}
               onCancel={() => setView("list")}
             />
           </div>
@@ -351,15 +392,23 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                 {posts.map((post) => (
                   <div key={post.id} className="flex items-center gap-6 py-5">
                     {post.image && (
-                      <img src={post.image} alt="" className="w-16 h-12 rounded-lg object-cover shrink-0 opacity-80" />
+                      <img
+                        src={post.image}
+                        alt=""
+                        className="w-16 h-12 rounded-lg object-cover shrink-0 opacity-80"
+                      />
                     )}
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-3 mb-1">
-                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${post.status === "Published" ? "bg-emerald-500/15 text-emerald-400" : "bg-white/10 text-paper/50"}`}>
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${post.status === "Published" ? "bg-emerald-500/15 text-emerald-400" : "bg-white/10 text-paper/50"}`}
+                        >
                           {post.status}
                         </span>
                         {post.featured && (
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--violet)]/15 text-[var(--violet)]">Featured</span>
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--violet)]/15 text-[var(--violet)]">
+                            Featured
+                          </span>
                         )}
                         {post.tag && <span className="text-xs text-paper/40">{post.tag}</span>}
                       </div>
@@ -385,9 +434,20 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
         {/* Setup notice */}
         <div className="mt-16 rounded-xl border border-white/5 bg-[#141414] p-6 text-xs text-paper/30 space-y-1">
           <p className="font-medium text-paper/50">Setup required</p>
-          <p>Set <code className="text-paper/60">NOTION_BLOG_DB</code> to the ID of your Notion blog database.</p>
-          <p>Set <code className="text-paper/60">ADMIN_PASSWORD</code> to your chosen admin password.</p>
-          <p>The Notion database needs these properties: <code className="text-paper/60">Title, Slug, Tag, Excerpt, Content, Image, Featured, Published, Status</code>.</p>
+          <p>
+            Set <code className="text-paper/60">NOTION_BLOG_DB</code> to the ID of your Notion blog
+            database.
+          </p>
+          <p>
+            Set <code className="text-paper/60">ADMIN_PASSWORD</code> to your chosen admin password.
+          </p>
+          <p>
+            The Notion database needs these properties:{" "}
+            <code className="text-paper/60">
+              Title, Slug, Tag, Excerpt, Content, Image, Featured, Published, Status
+            </code>
+            .
+          </p>
         </div>
       </div>
     </div>
