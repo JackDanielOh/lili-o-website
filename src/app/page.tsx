@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
 import { HomeHero } from "@/components/HomeHero";
+import { TrustedBySection } from "@/components/TrustedBySection";
 import foundryImg from "@/assets/foundry.jpg";
 import researchImg from "@/assets/research.jpg";
 
@@ -25,33 +26,7 @@ export default function Home() {
 
       <HomeHero />
 
-      <section className="border-t border-white/5 bg-[#141414]">
-        <div className="container-x py-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="eyebrow text-paper/30 mr-4">Household tasks</span>
-            {[
-              "Dish washing",
-              "Laundry folding",
-              "Surface cleaning",
-              "Meal prep",
-              "Object sorting",
-              "Bin handling",
-              "Table setting",
-              "Drawer organisation",
-              "Vacuuming",
-              "Appliance use",
-            ].map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-paper/60"
-              >
-                {t}
-              </span>
-            ))}
-            <span className="text-sm text-paper/30 ml-2">+ more</span>
-          </div>
-        </div>
-      </section>
+      <TrustedBySection />
 
       <section className="relative border-t border-white/5">
         <div className="container-x py-28 md:py-40 grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
