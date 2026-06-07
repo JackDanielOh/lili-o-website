@@ -58,12 +58,20 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/recruitment">Careers</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
-        <Link
-          href="/contact"
-          className="hidden md:inline-flex items-center rounded-lg bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--violet-dark)] transition"
-        >
-          Book Demo
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center rounded-lg border border-white/20 px-4 py-2 text-sm font-medium hover:border-[var(--violet)] hover:text-[var(--violet)] transition"
+          >
+            Test it →
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center rounded-lg bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--violet-dark)] transition"
+          >
+            Book Demo
+          </Link>
+        </div>
         <button
           aria-label="Menu"
           onClick={() => setOpen(!open)}
@@ -92,6 +100,13 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/contact" onClick={() => setOpen(false)}>
             Contact
           </NavLink>
+          <Link
+            href="/dashboard"
+            onClick={() => setOpen(false)}
+            className="border border-white/20 px-4 py-2 text-sm font-medium w-fit"
+          >
+            Test it →
+          </Link>
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
