@@ -1,6 +1,5 @@
 node_modules
 dist
-.output
-.vinxi
+.next
+out
 package-lock.json
-routeTree.gen.ts

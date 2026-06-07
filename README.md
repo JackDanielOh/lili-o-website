@@ -11,7 +11,7 @@ Repository: https://github.com/Lili-0-FR/lili-o-website
 | `/`            | Home                                           |
 | `/product`     | Product                                        |
 | `/blog`        | Blog index (Notion when configured)            |
-| `/blog/$slug`  | Blog post                                      |
+| `/blog/[slug]` | Blog post                                      |
 | `/contact`     | Contact / request access                       |
 | `/recruitment` | Careers / recruitment                          |
 | `/admin`       | Blog CMS (password + Notion; optional locally) |
@@ -19,11 +19,9 @@ Repository: https://github.com/Lili-0-FR/lili-o-website
 ## Tech stack
 
 - React 19 + TypeScript
-- [TanStack Start](https://tanstack.com/start) / [TanStack Router](https://tanstack.com/router) — file-based routes in `src/routes/`
-- Vite 7 + [`@lovable.dev/vite-tanstack-config`](https://www.npmjs.com/package/@lovable.dev/vite-tanstack-config) (bundled plugins; do not add TanStack/Tailwind plugins manually in `vite.config.ts`)
+- [Next.js 16](https://nextjs.org/) — App Router in `src/app/`
 - Tailwind CSS v4
-- Server functions for blog and contact in `src/lib/blog.ts`, `src/lib/submit-contact.ts`
-- SSR entry: `src/server.ts` (Node preset)
+- Notion API for blog and contact form (`src/lib/blog.ts`, `src/lib/submit-contact.ts`)
 
 ## Prerequisites
 
@@ -40,19 +38,18 @@ cp .env.example .env   # optional — fill in for blog/contact/admin
 npm run dev
 ```
 
-The dev server usually runs at http://localhost:5173 (exact host/port may depend on the Lovable/TanStack preset).
+The dev server runs at http://localhost:3000.
 
 ## Scripts
 
-| Script      | Command             | Purpose                  |
-| ----------- | ------------------- | ------------------------ |
-| `dev`       | `npm run dev`       | Development server       |
-| `build`     | `npm run build`     | Production build         |
-| `build:dev` | `npm run build:dev` | Development-mode build   |
-| `preview`   | `npm run preview`   | Preview production build |
-| `typecheck` | `npm run typecheck` | TypeScript check         |
-| `lint`      | `npm run lint`      | ESLint                   |
-| `format`    | `npm run format`    | Prettier                 |
+| Script      | Command             | Purpose                 |
+| ----------- | ------------------- | ----------------------- |
+| `dev`       | `npm run dev`       | Development server      |
+| `build`     | `npm run build`     | Production build        |
+| `start`     | `npm run start`     | Start production server |
+| `typecheck` | `npm run typecheck` | TypeScript check        |
+| `lint`      | `npm run lint`      | ESLint                  |
+| `format`    | `npm run format`    | Prettier                |
 
 ## Environment variables (optional)
 
@@ -78,22 +75,19 @@ ADMIN_PASSWORD=your-admin-password
 
 ```
 src/
-  routes/       # File-based pages (index, product, blog, contact, recruitment, admin)
+  app/          # Next.js App Router pages and API routes
   components/   # SiteHeader, SiteFooter, Pyramid, Dither, GradientText
-  lib/          # Blog, contact server functions, error handling
-  assets/       # Images, logos, video
-  server.ts     # SSR error wrapper
-public/         # Static images (hero, partner logos)
+  lib/          # Blog, contact helpers, Notion client
+  assets/       # Images and video
+public/         # Static files (hero, logos, favicon)
 ```
 
 ## Deployment (Vercel)
 
 1. Import the repository in [Vercel](https://vercel.com).
-2. Set the Framework Preset to **TanStack Start** (or let Vercel auto-detect).
+2. Set the Framework Preset to **Next.js** (auto-detected).
 3. Add environment variables from the table above in **Project Settings → Environment Variables**.
 4. Deploy. Preview deployments run on every push; production on merge to your default branch.
-
-If the build fails on Vercel, see [TanStack Start on Vercel](https://vercel.com/docs/frameworks/full-stack/tanstack-start) for Nitro plugin setup.
 
 ## License
 

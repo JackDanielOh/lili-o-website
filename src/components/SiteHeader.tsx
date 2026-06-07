@@ -1,29 +1,33 @@
-import { Link, type LinkProps } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import logoImg from "@/assets/logos/Logo Primaire.svg";
+const LOGO_SRC = "/logos/logo-primaire.svg";
 
 const navLinkClass =
   "font-semibold opacity-80 hover:opacity-100 transition pb-1 border-b-2 border-transparent";
 const navLinkActiveClass = "opacity-100 text-[var(--violet)] border-[var(--violet)]";
 
 function NavLink({
-  to,
+  href,
   children,
   exact,
   onClick,
 }: {
-  to: LinkProps["to"];
+  href: string;
   children: React.ReactNode;
   exact?: boolean;
   onClick?: () => void;
 }) {
+  const pathname = usePathname();
+  const isActive = exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <Link
-      to={to}
+      href={href}
       onClick={onClick}
-      activeOptions={exact ? { exact: true } : undefined}
-      className={navLinkClass}
-      activeProps={{ className: navLinkActiveClass }}
+      className={`${navLinkClass} ${isActive ? navLinkActiveClass : ""}`}
     >
       {children}
     </Link>
@@ -42,20 +46,20 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center">
-          <img src={logoImg} alt="Lili-o" className="h-9 w-auto brightness-0 invert" />
+        <Link href="/" className="flex items-center">
+          <img src={LOGO_SRC} alt="Lili-o" className="h-9 w-auto brightness-0 invert" />
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-sm">
-          <NavLink to="/" exact>
+          <NavLink href="/" exact>
             Home
           </NavLink>
-          <NavLink to="/product">Product</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
-          <NavLink to="/recruitment">Careers</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink href="/product">Product</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
+          <NavLink href="/recruitment">Careers</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
         </nav>
         <Link
-          to="/contact"
+          href="/contact"
           className="hidden md:inline-flex items-center rounded-lg bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--violet-dark)] transition"
         >
           Book Demo
@@ -73,23 +77,23 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
         <div
           className={`md:hidden ${isDark ? "bg-ink" : "bg-background"} border-t border-white/5 px-6 py-6 flex flex-col gap-4 font-semibold`}
         >
-          <NavLink to="/" exact onClick={() => setOpen(false)}>
+          <NavLink href="/" exact onClick={() => setOpen(false)}>
             Home
           </NavLink>
-          <NavLink to="/product" onClick={() => setOpen(false)}>
+          <NavLink href="/product" onClick={() => setOpen(false)}>
             Product
           </NavLink>
-          <NavLink to="/blog" onClick={() => setOpen(false)}>
+          <NavLink href="/blog" onClick={() => setOpen(false)}>
             Blog
           </NavLink>
-          <NavLink to="/recruitment" onClick={() => setOpen(false)}>
+          <NavLink href="/recruitment" onClick={() => setOpen(false)}>
             Careers
           </NavLink>
-          <NavLink to="/contact" onClick={() => setOpen(false)}>
+          <NavLink href="/contact" onClick={() => setOpen(false)}>
             Contact
           </NavLink>
           <Link
-            to="/contact"
+            href="/contact"
             onClick={() => setOpen(false)}
             className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit"
           >
