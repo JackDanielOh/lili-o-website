@@ -51,19 +51,21 @@ export function HomeHero() {
           />
         </div>
         <h1 className="display-xl max-w-4xl">
-          World&apos;s first <span className="text-[var(--violet)]">24/7 Data Foundry</span> for
-          household.
+          <span className="block">Fully Autonomous</span>
+          <span className="block text-[var(--violet)]">Robo-Centric</span>
+          <span className="block">Data Foundry</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
+        World's first {" "}
           <GradientText
             colors={["#5227FF", "#FF9FFC", "#B497CF"]}
             animationSpeed={8}
             showBorder={false}
           >
-            Autonomous data foundry
+            autonomous data foundry
           </GradientText>{" "}
-          running robots in real home environments to generate contact-rich, household-specific
-          training data Physical AI needs.
+          running robots in real home environments. Generating contact-rich, household-specific
+          training data.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
           <a
