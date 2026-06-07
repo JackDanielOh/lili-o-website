@@ -26,16 +26,17 @@ Repository: https://github.com/Lili-0-FR/lili-o-website
 ## Prerequisites
 
 - Node.js 22+
-- npm
+- pnpm (via [Corepack](https://nodejs.org/api/corepack.html): `corepack enable`)
 
 ## Getting started
 
 ```bash
 git clone https://github.com/Lili-0-FR/lili-o-website.git
 cd lili-o-website
-npm install
+corepack enable
+pnpm install
 cp .env.example .env   # optional — fill in for blog/contact/admin
-npm run dev
+pnpm dev
 ```
 
 The dev server runs at http://localhost:3000.
@@ -44,12 +45,12 @@ The dev server runs at http://localhost:3000.
 
 | Script      | Command             | Purpose                 |
 | ----------- | ------------------- | ----------------------- |
-| `dev`       | `npm run dev`       | Development server      |
-| `build`     | `npm run build`     | Production build        |
-| `start`     | `npm run start`     | Start production server |
-| `typecheck` | `npm run typecheck` | TypeScript check        |
-| `lint`      | `npm run lint`      | ESLint                  |
-| `format`    | `npm run format`    | Prettier                |
+| `dev`       | `pnpm dev`       | Development server      |
+| `build`     | `pnpm build`     | Production build        |
+| `start`     | `pnpm start`     | Start production server |
+| `typecheck` | `pnpm typecheck` | TypeScript check        |
+| `lint`      | `pnpm lint`      | ESLint                  |
+| `format`    | `pnpm format`    | Prettier                |
 
 ## Environment variables (optional)
 

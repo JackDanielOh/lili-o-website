@@ -1,7 +1,7 @@
 {
   "name": "lili-o-website",
   "private": true,
-  "packageManager": "npm@10.9.8",
+  "packageManager": "pnpm@10.12.4",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
