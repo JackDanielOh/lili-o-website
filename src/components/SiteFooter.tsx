@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 

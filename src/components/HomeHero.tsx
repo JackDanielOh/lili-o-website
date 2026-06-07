@@ -1,11 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Pyramid } from "@/components/Pyramid";
+import Dither from "@/components/Dither/Dither";
 import GradientText from "@/components/GradientText/GradientText";
-
-const Dither = dynamic(() => import("@/components/Dither/Dither"), { ssr: false });
 
 export function HomeHero() {
   return (
