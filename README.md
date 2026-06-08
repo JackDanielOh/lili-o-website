@@ -13,7 +13,7 @@ Repository: https://github.com/Lili-0-FR/lili-o-website
 | `/blog`        | Blog index (Notion when configured)            |
 | `/blog/[slug]` | Blog post                                      |
 | `/contact`     | Contact / request access                       |
-| `/recruitment` | Careers / recruitment                          |
+| `/recruit`     | Careers / recruitment                          |
 | `/admin`       | Blog CMS (password + Notion; optional locally) |
 
 ## Tech stack

@@ -13,25 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const values = [
-  {
-    n: "01",
-    t: "Hard problems, real impact",
-    d: "We're solving autonomy in unstructured home environments — the kind of work that changes what robots can do.",
-  },
-  {
-    n: "02",
-    t: "Move fast, build carefully",
-    d: "We're early-stage and shipping fast, but we care about rigour. Good ideas win, regardless of where they come from.",
-  },
-  {
-    n: "03",
-    t: "EU-built, globally minded",
-    d: "Based in Europe, building for the world. AI Act compliant from day one, with a team that thinks long-term.",
-  },
-];
-
-export default function RecruitmentPage() {
+export default function RecruitPage() {
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
@@ -48,36 +30,6 @@ export default function RecruitmentPage() {
             We&apos;re assembling a small team of engineers, researchers, and operators who want to
             solve one of the hardest problems in robotics — at home, at scale.
           </p>
-        </div>
-      </section>
-
-      <section className="container-x py-28 md:py-36">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
-          <div>
-            <div className="eyebrow text-[var(--violet)] mb-6">Why Lili-o</div>
-            <h2 className="display-lg">Small team. Big frontier.</h2>
-          </div>
-          <div className="space-y-6 text-lg leading-relaxed text-paper/80 max-w-2xl">
-            <p>
-              Lili-o runs robots 24/7 in real home environments to generate the training data
-              Physical AI needs. We&apos;re backed by global investors and working with design
-              partners who are building the next generation of household robots.
-            </p>
-            <p className="text-paper/60">
-              If you&apos;re excited about robotics, autonomy, or data at scale — and you want to
-              work on problems that matter — we&apos;d love to hear from you.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-20 grid md:grid-cols-3 gap-px bg-white/10">
-          {values.map((v) => (
-            <div key={v.n} className="bg-ink p-10">
-              <div className="text-[var(--violet)] text-sm font-mono mb-6">{v.n}</div>
-              <h3 className="text-2xl font-bold tracking-tight">{v.t}</h3>
-              <p className="mt-3 text-paper/60">{v.d}</p>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -119,33 +71,6 @@ export default function RecruitmentPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="container-x py-28 md:py-36">
-        <div className="eyebrow text-[var(--violet)] mb-6">What we look for</div>
-        <h2 className="display-lg max-w-3xl">The kind of people we want to work with.</h2>
-        <div className="mt-14 flex flex-wrap gap-3">
-          {[
-            "Robotics & autonomy",
-            "ML & computer vision",
-            "Data engineering",
-            "Full-stack engineering",
-            "Hardware & mechatronics",
-            "Research & experimentation",
-            "Operations & logistics",
-          ].map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-white/10 px-4 py-2 text-sm text-paper/60"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-        <p className="mt-10 max-w-2xl text-paper/60 leading-relaxed">
-          When we do open roles, they&apos;ll likely sit across these areas. If any of this sounds
-          like you, we&apos;d still love to hear from you — even before a job goes live.
-        </p>
       </section>
 
       <section className="relative overflow-hidden border-t border-white/5">

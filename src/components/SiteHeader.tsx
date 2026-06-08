@@ -55,7 +55,7 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           </NavLink>
           <NavLink href="/product">Product</NavLink>
           <NavLink href="/blog">Blog</NavLink>
-          <NavLink href="/recruitment">Careers</NavLink>
+          <NavLink href="/recruit">Careers</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
         <div className="hidden md:flex items-center gap-3">
@@ -94,7 +94,7 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/blog" onClick={() => setOpen(false)}>
             Blog
           </NavLink>
-          <NavLink href="/recruitment" onClick={() => setOpen(false)}>
+          <NavLink href="/recruit" onClick={() => setOpen(false)}>
             Careers
           </NavLink>
           <NavLink href="/contact" onClick={() => setOpen(false)}>
