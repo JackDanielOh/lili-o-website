@@ -3,17 +3,9 @@
 import { useState, useEffect } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import type { BlogPost, CreatePostInput } from "@/lib/blog";
+import { BLOG_TAGS } from "@/lib/blog-tags";
 
 const LOGO_SRC = "/logos/logo-primaire.svg";
-
-const TAGS = [
-  "Manipulation · Learning",
-  "Planning · Automation",
-  "Autonomy · Robotics",
-  "Hardware · Generalization",
-  "Data · Human behavior",
-  "Company · Update",
-];
 
 const SESSION_KEY = "lilio_admin";
 
@@ -191,7 +183,7 @@ function PostForm({
             className="mt-1.5 w-full rounded-lg border border-white/10 bg-ink px-4 py-3 text-sm text-paper outline-none focus:border-[var(--violet)]/60"
           >
             <option value="">— select —</option>
-            {TAGS.map((t) => (
+            {BLOG_TAGS.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>

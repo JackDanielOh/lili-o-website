@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPosts } from "@/lib/blog";
-import { STATIC_BLOG_POSTS } from "@/lib/blog-fallback";
+import { parsePublishedAt, STATIC_BLOG_POSTS } from "@/lib/blog-fallback";
 import { SITE_URL } from "@/lib/site";
 
 const STATIC_ROUTES = ["/", "/product", "/blog", "/recruit", "/contact"];
@@ -23,9 +23,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       posts.find((p) => p.slug === slug) ?? STATIC_BLOG_POSTS.find((p) => p.slug === slug);
     return {
       url: `${SITE_URL}/blog/${slug}`,
-      lastModified: post?.publishedAt ? new Date(post.publishedAt) : new Date(),
+      lastModified: post?.publishedAt ? new Date(parsePublishedAt(post.publishedAt)) : new Date(),
       changeFrequency: "monthly" as const,
-      priority: slug === "one-shot-learning" ? 0.8 : 0.6,
+      priority: ["1", "2", "3"].includes(slug) ? 0.8 : 0.6,
     };
   });
 

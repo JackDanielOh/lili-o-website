@@ -167,7 +167,7 @@ export default function ProductPage() {
               n: "02",
               t: "One-Shot learning",
               d: "5-minute demonstration → autonomous skill. Industry standard: 1 hour+.",
-              link: "/blog/one-shot-learning",
+              link: "/blog/1",
             },
             {
               n: "03",
