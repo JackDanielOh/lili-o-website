@@ -58,18 +58,12 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/recruit">Careers</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </nav>
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center">
           <Link
             href="/dashboard"
-            className="inline-flex items-center rounded-lg border border-white/20 px-4 py-2 text-sm font-medium hover:border-[var(--violet)] hover:text-[var(--violet)] transition"
-          >
-            Test it →
-          </Link>
-          <Link
-            href="/contact"
             className="inline-flex items-center rounded-lg bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium hover:bg-[var(--violet-dark)] transition"
           >
-            Book Demo
+            Test it →
           </Link>
         </div>
         <button
@@ -103,16 +97,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <Link
             href="/dashboard"
             onClick={() => setOpen(false)}
-            className="border border-white/20 px-4 py-2 text-sm font-medium w-fit"
+            className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit rounded-lg hover:bg-[var(--violet-dark)] transition"
           >
             Test it →
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="bg-[var(--violet)] text-white px-4 py-2 text-sm font-medium w-fit"
-          >
-            Book Demo
           </Link>
         </div>
       )}
