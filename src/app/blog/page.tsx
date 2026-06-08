@@ -8,9 +8,10 @@ import { STATIC_BLOG_POSTS } from "@/lib/blog-fallback";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Research updates, team posts, and thinking on household robotics and Physical AI.",
+  alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — Lili-o",
-    description: "Research and thinking from the Lili-o team.",
+    description: "Research updates, team posts, and thinking on household robotics and Physical AI.",
   },
 };
 

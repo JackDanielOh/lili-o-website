@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { JsonLd } from "@/components/JsonLd";
 import { getPostBySlug } from "@/lib/blog";
 import { getStaticPostBySlug } from "@/lib/blog-fallback";
+import { SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -12,9 +14,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const { post: notionPost } = await getPostBySlug(slug);
   const post = notionPost ?? getStaticPostBySlug(slug);
+  const title = post?.title ?? "Post";
+  const description = post?.excerpt ?? "";
+
   return {
-    title: post?.title ?? "Post",
-    description: post?.excerpt ?? "",
+    title,
+    description,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title: `${title} — Lili-o`,
+      description,
+      type: "article",
+      publishedTime: post?.publishedAt,
+      authors: ["Lili-o"],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
   };
 }
 
@@ -26,9 +42,27 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   const img = post.image || null;
+  const articleUrl = `${SITE_URL}/blog/${slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.publishedAt,
+    author: { "@type": "Organization", name: "Lili-o" },
+    publisher: {
+      "@type": "Organization",
+      name: "Lili-o",
+      url: SITE_URL,
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+    url: articleUrl,
+  };
 
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
+      <JsonLd data={articleJsonLd} />
       <SiteHeader variant="dark" />
 
       {img && (

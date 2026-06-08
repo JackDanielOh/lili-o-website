@@ -4,9 +4,9 @@ export const STATIC_BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
     tag: "Manipulation · Learning",
-    title: "Teaching robots new skills in 5 minutes",
+    title: "The One-Shot Method: teaching robots new skills in 5 minutes",
     excerpt:
-      "Our proprietary One-Shot method reduces manipulation primitive creation from 1 hour to 5 minutes. Here's how.",
+      "Our proprietary One-Shot method for Physical AI data collection reduces manipulation primitive creation from 1 hour to 5 minutes. Here's how.",
     content:
       "One of the hardest problems in robotics data collection is making robots autonomous on tasks quickly enough to justify the infrastructure. Traditional approaches require days of engineering per task. Our One-Shot method changes that.\n\nBy combining visual demonstration with a novel primitive extraction pipeline, we reduce the time to create a new manipulation skill from over an hour to under five minutes. The robot watches a single human demonstration, extracts the key contact events, and generalises to new object positions and orientations.\n\nThis is what makes the foundry viable at scale.",
     image: "",

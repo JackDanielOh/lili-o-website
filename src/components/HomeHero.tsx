@@ -11,7 +11,7 @@ export function HomeHero() {
       <div className="absolute inset-0 z-0">
         <img
           src="/hero-landing.webp"
-          alt=""
+          alt="Lili-o autonomous data foundry running robots in real home environments"
           className="w-full h-full object-cover opacity-80"
           width={1600}
           height={1100}
@@ -63,7 +63,7 @@ export function HomeHero() {
             autonomous data foundry
           </GradientText>{" "}
           running robots in real home environments. Generating contact-rich, household-specific
-          training data.
+          training data for Physical AI.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
           <a

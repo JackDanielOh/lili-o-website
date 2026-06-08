@@ -7,6 +7,7 @@ import { Pyramid } from "@/components/Pyramid";
 export const metadata: Metadata = {
   title: "Careers",
   description: "Join Lili-o and help build the autonomous Data Foundry for Physical AI.",
+  alternates: { canonical: "/recruit" },
   openGraph: {
     title: "Careers — Lili-o",
     description: "We're building the team that will bring household robotics data to scale.",

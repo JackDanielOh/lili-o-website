@@ -27,8 +27,8 @@ export function OurBeliefSection() {
           </p>
           <p className="text-paper/60 border-l-2 border-[var(--violet)] pl-6">
             To build this foundry, we had to solve a hard problem first: how do you make a robot
-            autonomous on a task without months of engineering? From hours of demonstration to
-            minutes. From months of engineering to days.
+            autonomous on a task without months of engineering? We built the One-Shot method—from
+            hours of demonstration to minutes. From months of engineering to days.
           </p>
         </div>
       </div>

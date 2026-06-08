@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   title: "Lili-o — The autonomous Data Foundry for Physical AI",
   description:
     "We run robots 24/7 in home environments to generate the training data Physical AI needs.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Lili-o — Data Foundry for Physical AI",
     description: "Autonomous data generation for the next era of robotics.",

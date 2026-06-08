@@ -7,12 +7,13 @@ import { Pyramid } from "@/components/Pyramid";
 import foundryImg from "@/assets/foundry.jpg";
 
 export const metadata: Metadata = {
-  title: "The Foundry",
+  title: "Physical AI Data Foundry",
   description:
-    "Robots running use cases autonomously. Real home environments. Zero human operators. 24/7.",
+    "Lili-o's autonomous data foundry runs robots 24/7 in real home environments to generate Physical AI training data. Zero human operators.",
+  alternates: { canonical: "/product" },
   openGraph: {
-    title: "The Foundry — Lili-o",
-    description: "How Lili-o generates the data Physical AI needs.",
+    title: "Physical AI Data Foundry — Lili-o",
+    description: "How Lili-o generates the Physical AI training data robotics has been missing.",
   },
 };
 
@@ -45,6 +46,7 @@ export default function ProductPage() {
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
+      <h1 className="sr-only">The Physical AI Data Foundry</h1>
 
       <section className="container-x pt-24 md:pt-36 pb-28 md:pb-36 grid md:grid-cols-2 gap-16 items-center border-b border-white/5">
         <div>
@@ -159,22 +161,33 @@ export default function ProductPage() {
               n: "01",
               t: "Hardware agnostic",
               d: "One use case, any robot. Unitree, Rainbow, Agibot — no reprogramming.",
+              link: null,
             },
             {
               n: "02",
               t: "One-Shot learning",
               d: "5-minute demonstration → autonomous skill. Industry standard: 1 hour+.",
+              link: "/blog/one-shot-learning",
             },
             {
               n: "03",
               t: "Perpetual output",
               d: "One build. Infinite episodes. 24/7 generation across the entire fleet.",
+              link: null,
             },
           ].map((s) => (
             <div key={s.n} className="bg-ink p-10">
               <div className="text-[var(--violet)] text-sm font-mono mb-6">{s.n}</div>
               <h3 className="text-2xl font-bold tracking-tight">{s.t}</h3>
               <p className="mt-3 text-paper/60">{s.d}</p>
+              {s.link && (
+                <Link
+                  href={s.link}
+                  className="mt-4 inline-block text-sm text-[var(--violet)] hover:underline"
+                >
+                  Learn how the One-Shot method works →
+                </Link>
+              )}
             </div>
           ))}
         </div>
