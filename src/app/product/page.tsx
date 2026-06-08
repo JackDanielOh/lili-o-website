@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
@@ -48,7 +49,8 @@ export default function ProductPage() {
       <section className="container-x pt-24 md:pt-36 pb-28 md:pb-36 grid md:grid-cols-2 gap-16 items-center border-b border-white/5">
         <div>
           <div className="eyebrow text-[var(--violet)] mb-6">Approach</div>
-          <h2 className="display-lg">The industry collects data by hand. We automated it.</h2>
+          <h2 className="display-lg">Not by hand.</h2>
+          <h2 className="display-lg">But automated.</h2>
           <div className="mt-8 space-y-5 text-paper/70 leading-relaxed">
             <p>
               Today, most robotics data is collected through teleoperation — a human operates a
@@ -296,12 +298,12 @@ export default function ProductPage() {
             Ready to train on the data <span className="text-[var(--violet)]">Physical AI</span> has
             been missing?
           </h2>
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="mt-12 inline-flex rounded-xl bg-[var(--violet)] text-white px-10 py-5 font-medium text-lg hover:bg-[var(--violet-dark)] transition"
           >
             Request access
-          </a>
+          </Link>
         </div>
       </section>
 
