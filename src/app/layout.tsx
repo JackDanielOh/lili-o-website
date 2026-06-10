@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     images: [OG_IMAGE],
   },
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.webp",
   },
 };
 
