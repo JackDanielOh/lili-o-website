@@ -4,9 +4,9 @@ const LOGO_FILTER_CLASS = "grayscale brightness-0 invert opacity-45";
 
 const PARTNERS = [
   { name: "Antler", logo: "/antler-logo.svg", width: 100, height: 24 },
-  { name: "AlienTech", logo: "/partnerLogos/alientech-logo.webp", width: 160, height: 48 },
-  { name: "WhatsLab", logo: "/partnerLogos/whatslab-logo.webp", width: 160, height: 48 },
-  { name: "Metaba", logo: "/partnerLogos/metaba-logo.webp", width: 160, height: 31 },
+  { name: "NVIDIA", logo: "/partnerLogos/nvidia_logo.webp", width: 160, height: 29 },
+  { name: "WhatsLab", logo: "/partnerLogos/whatslab_logo.webp", width: 160, height: 34 },
+  { name: "Metaba", logo: "/partnerLogos/metaba_logo.webp", width: 160, height: 38 },
 ] as const;
 
 export function TrustedBySection() {
