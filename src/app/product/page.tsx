@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
-import foundryImg from "@/assets/foundry.jpg";
+import foundryImg from "@/assets/foundry.webp";
 
 export const metadata: Metadata = {
   title: "Physical AI Data Foundry",
