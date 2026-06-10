@@ -5,21 +5,21 @@ import { HomeHero } from "@/components/HomeHero";
 import { TrustedBySection } from "@/components/TrustedBySection";
 
 const OurBeliefSection = dynamic(() =>
-  import("@/components/home/OurBeliefSection").then((m) => ({ default: m.OurBeliefSection }))
+  import("@/components/home/OurBeliefSection").then((m) => ({ default: m.OurBeliefSection })),
 );
 const EntryPointsSection = dynamic(() =>
-  import("@/components/home/EntryPointsSection").then((m) => ({ default: m.EntryPointsSection }))
+  import("@/components/home/EntryPointsSection").then((m) => ({ default: m.EntryPointsSection })),
 );
 const DesignPartnersSection = dynamic(() =>
   import("@/components/home/DesignPartnersSection").then((m) => ({
     default: m.DesignPartnersSection,
-  }))
+  })),
 );
 const HomeCtaSection = dynamic(() =>
-  import("@/components/home/HomeCtaSection").then((m) => ({ default: m.HomeCtaSection }))
+  import("@/components/home/HomeCtaSection").then((m) => ({ default: m.HomeCtaSection })),
 );
 const SiteFooter = dynamic(() =>
-  import("@/components/SiteFooter").then((m) => ({ default: m.SiteFooter }))
+  import("@/components/SiteFooter").then((m) => ({ default: m.SiteFooter })),
 );
 
 export const metadata: Metadata = {

@@ -15,13 +15,19 @@ export function BlogArticleContent({ blocks, plainContent }: Props) {
             case "heading":
               if (block.level === 2) {
                 return (
-                  <h2 key={i} className="text-2xl md:text-3xl font-bold tracking-tight text-paper pt-4">
+                  <h2
+                    key={i}
+                    className="text-2xl md:text-3xl font-bold tracking-tight text-paper pt-4"
+                  >
                     {block.text}
                   </h2>
                 );
               }
               return (
-                <h3 key={i} className="text-xl md:text-2xl font-bold tracking-tight text-paper pt-2">
+                <h3
+                  key={i}
+                  className="text-xl md:text-2xl font-bold tracking-tight text-paper pt-2"
+                >
                   {block.text}
                 </h3>
               );

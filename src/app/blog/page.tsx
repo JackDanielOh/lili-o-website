@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Blog — Lili-o",
-    description: "Research updates, team posts, and thinking on household robotics and Physical AI.",
+    description:
+      "Research updates, team posts, and thinking on household robotics and Physical AI.",
   },
 };
 

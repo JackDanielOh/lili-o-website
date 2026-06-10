@@ -42,7 +42,8 @@ export const qualityData: StaticArticle = {
       type: "image",
       src: "/blog/3/foundry-pipeline.webp",
       alt: "Data pipeline from robot episodes to training sets",
-      caption: "From raw episodes to structured training data — automated, continuous, quality-controlled.",
+      caption:
+        "From raw episodes to structured training data — automated, continuous, quality-controlled.",
     },
     {
       type: "paragraph",

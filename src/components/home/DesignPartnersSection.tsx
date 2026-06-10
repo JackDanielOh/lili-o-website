@@ -20,9 +20,9 @@ export function DesignPartnersSection() {
               We&apos;re looking for the teams building household robots.
             </h2>
             <p className="mt-8 max-w-xl text-lg text-paper/60 leading-relaxed">
-              We&apos;re opening the foundry to a small number of design partners — robotics companies
-              and research labs who want early access to household manipulation data and are willing
-              to help shape what we build.
+              We&apos;re opening the foundry to a small number of design partners — robotics
+              companies and research labs who want early access to household manipulation data and
+              are willing to help shape what we build.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               {BENEFITS.map((t) => (

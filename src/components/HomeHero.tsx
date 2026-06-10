@@ -54,7 +54,7 @@ export function HomeHero() {
           <span className="block">Data Foundry</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-        World's first {" "}
+          World&apos;s first{" "}
           <GradientText
             colors={["#5227FF", "#FF9FFC", "#B497CF"]}
             animationSpeed={8}
