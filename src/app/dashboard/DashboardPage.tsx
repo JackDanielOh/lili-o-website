@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
-const API_BASE = "https://api.lili-o.com";
+const API_BASE = "http://localhost:8000";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 
 /* ── api ─────────────────────────────────────────────────── */
@@ -119,7 +119,7 @@ function AuthPage({ onLogin }: { onLogin: (jwt: string, email: string) => void }
     setNotice(null);
     try {
       if (tab === "forgot") {
-        await apiFetch("/auth/forgot-password", {
+        await apiFetch("/auth/reset-password", {
           method: "POST",
           body: JSON.stringify({ email }),
         });

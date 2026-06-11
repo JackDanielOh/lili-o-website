@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-const API_BASE = "https://api.lili-o.com";
+const API_BASE = "http://localhost:8000";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 
 async function apiFetch<T = unknown>(
@@ -24,11 +24,9 @@ async function apiFetch<T = unknown>(
   return json as T;
 }
 
-function ResetPasswordForm() {
-  const searchParams = useSearchParams();
+export default function ResetPage() {
   const router = useRouter();
-  const token = searchParams.get("token");
-
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,8 +34,16 @@ function ResetPasswordForm() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (!token) setError("Invalid or missing reset link. Please request a new one.");
-  }, [token]);
+    const hash = window.location.hash.slice(1); // remove leading #
+    const params = new URLSearchParams(hash);
+    const token = params.get("access_token");
+    const type = params.get("type");
+    if (token && type === "recovery") {
+      setAccessToken(token);
+    } else {
+      setError("Invalid or expired reset link. Please request a new one.");
+    }
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,9 +54,9 @@ function ResetPasswordForm() {
     setLoading(true);
     setError(null);
     try {
-      await apiFetch("/auth/reset-password", {
+      await apiFetch("/auth/confirm-reset", {
         method: "POST",
-        body: JSON.stringify({ token, password }),
+        body: JSON.stringify({ access_token: accessToken, new_password: password }),
       });
       setDone(true);
     } catch (err) {
@@ -61,7 +67,7 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div className="theme-dark bg-ink text-paper min-h-screen flex flex-col" style={{ fontFamily: "var(--font-sans, sans-serif)" }}>
+    <div className="theme-dark bg-ink text-paper min-h-screen flex flex-col">
       <div className="border-b border-white/8 h-14 flex items-center justify-between px-8 shrink-0">
         <Link href="/">
           <img src={LOGO_SRC} alt="Lili-o" className="h-7 w-auto brightness-0 invert opacity-80" />
@@ -96,7 +102,7 @@ function ResetPasswordForm() {
           ) : (
             <>
               <div className="mb-8 text-center">
-                <p className="text-xs font-semibold tracking-widest uppercase text-[var(--violet)] mb-3">Robot API</p>
+                <p className="eyebrow text-[var(--violet)] mb-3">Robot API</p>
                 <h1 className="text-2xl font-bold tracking-tight">Set a new password</h1>
                 <p className="mt-2 text-sm text-paper/40">Choose a strong password for your account.</p>
               </div>
@@ -108,7 +114,7 @@ function ResetPasswordForm() {
                   </div>
                 )}
 
-                {!token ? null : (
+                {accessToken && (
                   <form onSubmit={submit} className="flex flex-col gap-4">
                     <div>
                       <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">New password</label>
@@ -151,13 +157,5 @@ function ResetPasswordForm() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function ResetPasswordPage() {
-  return (
-    <Suspense>
-      <ResetPasswordForm />
-    </Suspense>
   );
 }
