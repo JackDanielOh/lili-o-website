@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Pyramid } from "@/components/Pyramid";
 import Dither from "@/components/Dither/Dither";
 import GradientText from "@/components/GradientText/GradientText";
@@ -72,12 +71,12 @@ export function HomeHero() {
           >
             Request access
           </a>
-          <Link
+          {/* <Link
             href="/product"
             className="rounded-xl px-7 py-4 border border-white/20 hover:border-[var(--violet)] transition"
           >
             Explore the foundry →
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>

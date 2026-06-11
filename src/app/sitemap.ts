@@ -3,14 +3,22 @@ import { getPosts } from "@/lib/blog";
 import { parsePublishedAt, STATIC_BLOG_POSTS } from "@/lib/blog-fallback";
 import { SITE_URL } from "@/lib/site";
 
-const STATIC_ROUTES = ["/", "/product", "/blog", "/recruit", "/contact"];
+const STATIC_ROUTES = [
+  "/",
+  "/product",
+  "/product/data",
+  "/product/software",
+  "/blog",
+  "/recruit",
+  "/contact",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path === "/" ? "" : path}`,
     lastModified: new Date(),
     changeFrequency: path === "/" || path === "/blog" ? "weekly" : "monthly",
-    priority: path === "/" ? 1 : path === "/product" ? 0.9 : 0.7,
+    priority: path === "/" ? 1 : 0.7,
   }));
 
   const { posts } = await getPosts();
