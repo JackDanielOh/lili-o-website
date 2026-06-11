@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://api.lili-o.com";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 
 /* ── api ─────────────────────────────────────────────────── */
@@ -1188,7 +1188,7 @@ function DocsTab() {
           <div>
             <h2 className="text-lg font-bold">Endpoints</h2>
             <p className="text-sm text-paper/45 mt-1">
-              Base URL: <code className="font-mono text-paper/70">http://localhost:8000</code>
+              Base URL: <code className="font-mono text-paper/70">https://api.lili-o.com</code>
             </p>
           </div>
 

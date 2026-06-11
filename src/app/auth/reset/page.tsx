@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://api.lili-o.com";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 
 async function apiFetch<T = unknown>(
