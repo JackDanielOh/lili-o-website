@@ -1022,7 +1022,7 @@ function DocsTab() {
           <div className="mt-4 border-t border-white/8 pt-4 flex flex-col gap-0.5">
             <p className="text-xs uppercase tracking-widest text-paper/25 font-medium px-2 mb-2">Links</p>
             <a
-              href="https://github.com/plume2109/lilio-sdk-python"
+              href="https://github.com/Lili-0-FR/lilio-sdk-python"
               target="_blank"
               rel="noopener noreferrer"
               className="px-2 py-1.5 text-sm text-paper/35 hover:text-paper/70 transition flex items-center gap-1.5"
@@ -1054,7 +1054,7 @@ function DocsTab() {
           </div>
           <div className="flex flex-col gap-3">
             <p className="text-xs text-paper/40 font-medium uppercase tracking-widest">Install</p>
-            <CodeBlock code={`git clone https://github.com/plume2109/lilio-sdk-python.git\ncd lilio-sdk-python\npip install -e .`} />
+            <CodeBlock code={`git clone https://github.com/Lili-0-FR/lilio-sdk-python.git\ncd lilio-sdk-python\npip install -e .`} />
             <p className="text-xs text-paper/40 font-medium uppercase tracking-widest mt-2">Full example</p>
             <CodeBlock code={`import json, cv2, numpy as np\nfrom lilio import LilioClient\n\nclient = LilioClient(api_key="lilio_sk_...", base_url="http://localhost:8000")\n\nwith open("config_vision_QM.json") as f:\n    calib = json.load(f)["camera_calibration"]\n\nimg_demo_left  = cv2.cvtColor(cv2.imread("left_0000.png"),  cv2.COLOR_BGR2RGB)\nimg_demo_right = cv2.cvtColor(cv2.imread("right_0000.png"), cv2.COLOR_BGR2RGB)\nimg_inf_left   = cv2.cvtColor(cv2.imread("left_0001.png"),  cv2.COLOR_BGR2RGB)\nimg_inf_right  = cv2.cvtColor(cv2.imread("right_0001.png"), cv2.COLOR_BGR2RGB)\ntraj = np.load("trajectory.npy", allow_pickle=True)\n\nwith client.session(calib) as session:\n    # Demo phase\n    session.set_roi(img_demo_left, img_demo_right, box=[640, 150, 1060, 680])\n    session.save_skill("open_coffee_machine", traj)\n\n    # Inference phase\n    plan = session.get_action_plan("open_coffee_machine", img_inf_left, img_inf_right)\n    if plan:\n        print("bottleneck pose:", plan[0])\n    else:\n        print("object not detected")`} />
           </div>
