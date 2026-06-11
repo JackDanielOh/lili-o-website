@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
 
 const BUDGETS = ["< $50K", "$50K – $300K", "$300K – $1M", "> $1M", "Not sure yet"];
-const SERVICES = ["Data Providing", "Data Management", "Zero Shot Software"];
+const SERVICES = ["Data Providing", "Data Management", "Zero Shot Software", "Design Partner"];
 
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
   return (
@@ -43,7 +43,7 @@ export function ContactForm() {
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
             <div className="mb-8 lg:mb-0 lg:sticky lg:top-24 lg:max-w-md">
               <div className="eyebrow text-[var(--violet)] mb-3">{"// Get in touch"}</div>
-              <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.05]">
+              <h1 className="display-lg">
                 Request access to the <span className="text-[var(--violet)]">Data Foundry</span>
               </h1>
               <p className="mt-4 text-base text-paper/70 leading-relaxed md:text-lg">
@@ -53,11 +53,10 @@ export function ContactForm() {
                 <span className="lg:hidden">↓ </span>
                 Complete the form
                 <span className="hidden lg:inline"> to get started</span>
-                {' — or email "'}
+                {' — or email '}
                 <a href="mailto:hello@lili-o.com" className="text-[var(--violet)] hover:underline">
                   hello@lili-o.com
                 </a>
-                .
               </p>
             </div>
 

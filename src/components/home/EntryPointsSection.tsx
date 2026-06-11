@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import foundryImg from "@/assets/foundry.jpg";
-import researchImg from "@/assets/research.jpg";
+import foundryImg from "@/assets/foundry.webp";
+import researchImg from "@/assets/research.webp";
 
 const CARDS = [
   {

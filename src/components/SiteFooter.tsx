@@ -36,7 +36,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/recruitment" className="hover:text-[var(--violet)]">
+              <Link href="/recruit" className="hover:text-[var(--violet)]">
                 Careers
               </Link>
             </li>

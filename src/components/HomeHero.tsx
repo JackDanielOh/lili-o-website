@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Pyramid } from "@/components/Pyramid";
 import Dither from "@/components/Dither/Dither";
 import GradientText from "@/components/GradientText/GradientText";
@@ -11,7 +10,7 @@ export function HomeHero() {
       <div className="absolute inset-0 z-0">
         <img
           src="/hero-landing.webp"
-          alt=""
+          alt="Lili-o autonomous data foundry running robots in real home environments"
           className="w-full h-full object-cover opacity-80"
           width={1600}
           height={1100}
@@ -39,7 +38,7 @@ export function HomeHero() {
           className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/25 px-4 py-2.5 backdrop-blur-sm"
           aria-label="Antler VC backed"
         >
-          <span className="text-sm font-medium text-paper/85">Invested By Global VC</span>
+          <span className="text-sm font-medium text-paper/85">Backed By</span>
           <img
             src="/antler-logo.svg"
             alt=""
@@ -54,7 +53,7 @@ export function HomeHero() {
           <span className="block">Data Foundry</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
-        World's first {" "}
+          World&apos;s first{" "}
           <GradientText
             colors={["#5227FF", "#FF9FFC", "#B497CF"]}
             animationSpeed={8}
@@ -72,12 +71,12 @@ export function HomeHero() {
           >
             Request access
           </a>
-          <Link
+          {/* <Link
             href="/product"
             className="rounded-xl px-7 py-4 border border-white/20 hover:border-[var(--violet)] transition"
           >
             Explore the foundry →
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>

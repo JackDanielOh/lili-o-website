@@ -232,13 +232,30 @@ function AuthPage({ onLogin }: { onLogin: (jwt: string, email: string) => void }
               </button>
             )}
 
-            {notice && <div className="mb-5"><Alert type="success">{notice}</Alert></div>}
-            {error && <div className="mb-5"><Alert type="error">{error}</Alert></div>}
+            {notice && (
+              <div className="mb-5">
+                <Alert type="success">{notice}</Alert>
+              </div>
+            )}
+            {error && (
+              <div className="mb-5">
+                <Alert type="error">{error}</Alert>
+              </div>
+            )}
 
             <form onSubmit={submit} className="flex flex-col gap-4">
               <div>
-                <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">Email</label>
-                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required autoComplete="email" />
+                <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">
+                  Email
+                </label>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                  autoComplete="email"
+                />
               </div>
               {!isForgot && (
                 <div>
@@ -863,7 +880,11 @@ const ENDPOINTS: {
     description:
       "Opens a new robot session. Each session holds an independent depth model initialised with the camera calibration. Returns a session_id used in all subsequent robot calls.",
     body: [
-      { field: "camera_calibration", type: "object", note: "The camera_calibration object from your camera config JSON — pass it as-is." },
+      {
+        field: "camera_calibration",
+        type: "object",
+        note: "The camera_calibration object from your camera config JSON — pass it as-is.",
+      },
     ],
     returns: "{ session_id: string }",
     sdkExample: `import json\nfrom lilio import LilioClient\n\nclient = LilioClient(api_key="lilio_sk_...")\n\nwith open("config_vision_QM.json") as f:\n    calib = json.load(f)["camera_calibration"]\n\nwith client.session(calib) as session:\n    ...  # session closes automatically`,
@@ -880,9 +901,17 @@ const ENDPOINTS: {
     description:
       "Demo phase — step 1. Send a stereo image pair and a bounding box around the object of interest. The server runs S2M2 stereo depth estimation, EdgeTAM segmentation, and constructs the object pointcloud. Must be called before /robot/save_skill.",
     body: [
-      { field: "left_image",  type: "string", note: "Base64-encoded PNG of the left camera frame." },
-      { field: "right_image", type: "string", note: "Base64-encoded PNG of the right camera frame." },
-      { field: "box",         type: "[x1, y1, x2, y2]", note: "Bounding box in pixel coordinates — top-left to bottom-right." },
+      { field: "left_image", type: "string", note: "Base64-encoded PNG of the left camera frame." },
+      {
+        field: "right_image",
+        type: "string",
+        note: "Base64-encoded PNG of the right camera frame.",
+      },
+      {
+        field: "box",
+        type: "[x1, y1, x2, y2]",
+        note: "Bounding box in pixel coordinates — top-left to bottom-right.",
+      },
     ],
     returns: '{ roi: [x1, y1, x2, y2], info: "demo state ready" }',
     sdkExample: `import cv2\n\nimg_left  = cv2.cvtColor(cv2.imread("left_0000.png"),  cv2.COLOR_BGR2RGB)\nimg_right = cv2.cvtColor(cv2.imread("right_0000.png"), cv2.COLOR_BGR2RGB)\n\nsession.set_roi(img_left, img_right, box=[640, 150, 1060, 680])`,
@@ -893,8 +922,12 @@ const ENDPOINTS: {
     description:
       "Demo phase — step 2. Attaches a robot trajectory to the demo state captured by /robot/roi and saves the skill to your account. Requires /robot/roi to have been called first in the same session.",
     body: [
-      { field: "skill_name",    type: "string",   note: "Name of the skill to save." },
-      { field: "trajectories",  type: "array",    note: "Array of waypoints. Each has: arm (\"left\"|\"right\"), TL (4×4 float), TR (4×4 float), gl (float, left gripper 0=closed), gr (float, right gripper)." },
+      { field: "skill_name", type: "string", note: "Name of the skill to save." },
+      {
+        field: "trajectories",
+        type: "array",
+        note: 'Array of waypoints. Each has: arm ("left"|"right"), TL (4×4 float), TR (4×4 float), gl (float, left gripper 0=closed), gr (float, right gripper).',
+      },
     ],
     returns: '{ info: "\'<skill_name>\' saved." }',
     sdkExample: `import numpy as np\n\ntraj = np.load("trajectory.npy", allow_pickle=True)\nsession.save_skill("open_coffee_machine", traj)`,
@@ -912,9 +945,13 @@ const ENDPOINTS: {
     description:
       "Inference phase. Send a new stereo image pair — the server runs UMatcher dense descriptor matching, re-segments the object, estimates the 6-DoF pose shift via FPFH+RANSAC+G-ICP, and returns the adapted trajectory. Returns null if the object was not detected.",
     body: [
-      { field: "skill_name",  type: "string", note: "Name of the skill to run." },
-      { field: "left_image",  type: "string", note: "Base64-encoded PNG of the left camera frame." },
-      { field: "right_image", type: "string", note: "Base64-encoded PNG of the right camera frame." },
+      { field: "skill_name", type: "string", note: "Name of the skill to run." },
+      { field: "left_image", type: "string", note: "Base64-encoded PNG of the left camera frame." },
+      {
+        field: "right_image",
+        type: "string",
+        note: "Base64-encoded PNG of the right camera frame.",
+      },
     ],
     returns: "{ plan: array | null }",
     sdkExample: `img_left  = cv2.cvtColor(cv2.imread("left_0001.png"),  cv2.COLOR_BGR2RGB)\nimg_right = cv2.cvtColor(cv2.imread("right_0001.png"), cv2.COLOR_BGR2RGB)\n\nplan = session.get_action_plan("open_coffee_machine", img_left, img_right)\nif plan:\n    print("bottleneck pose:", plan[0])\nelse:\n    print("object not detected")`,
@@ -922,8 +959,8 @@ const ENDPOINTS: {
 ];
 
 const METHOD_COLOR: Record<string, string> = {
-  GET:    "text-green-400  bg-green-400/10  border-green-400/20",
-  POST:   "text-violet-400 bg-violet-400/10 border-violet-400/20",
+  GET: "text-green-400  bg-green-400/10  border-green-400/20",
+  POST: "text-violet-400 bg-violet-400/10 border-violet-400/20",
   DELETE: "text-red-400    bg-red-400/10    border-red-400/20",
 };
 
@@ -1231,8 +1268,7 @@ function SkillsTab({ jwt, onExpired }: { jwt: string; onExpired: () => void }) {
       <div>
         <h2 className="text-base font-semibold">Skills</h2>
         <p className="text-sm text-paper/40 mt-0.5">
-          Robot skills saved via{" "}
-          <code className="font-mono text-paper/60">/robot/roi</code> +{" "}
+          Robot skills saved via <code className="font-mono text-paper/60">/robot/roi</code> +{" "}
           <code className="font-mono text-paper/60">/robot/save_skill</code>.
         </p>
       </div>
@@ -1253,8 +1289,12 @@ function SkillsTab({ jwt, onExpired }: { jwt: string; onExpired: () => void }) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/8 bg-white/2">
-                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider">Skill name</th>
-                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider hidden sm:table-cell">Created</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider">
+                  Skill name
+                </th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider hidden sm:table-cell">
+                  Created
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
@@ -1318,7 +1358,9 @@ function KeysTab({
     }
   }, []);
 
-  useEffect(() => { load(jwt); }, [load, jwt]);
+  useEffect(() => {
+    load(jwt);
+  }, [load, jwt]);
 
   async function reauth(e: { preventDefault(): void }) {
     e.preventDefault();
@@ -1387,8 +1429,17 @@ function KeysTab({
         </div>
         {reauthError && <Alert type="error">{reauthError}</Alert>}
         <form onSubmit={reauth} className="flex flex-col gap-3">
-          <Input type="password" value={reauthPassword} onChange={(e) => setReauthPassword(e.target.value)} placeholder="Password" required autoComplete="current-password" />
-          <Btn type="submit" loading={reauthLoading} className="w-fit">Confirm</Btn>
+          <Input
+            type="password"
+            value={reauthPassword}
+            onChange={(e) => setReauthPassword(e.target.value)}
+            placeholder="Password"
+            required
+            autoComplete="current-password"
+          />
+          <Btn type="submit" loading={reauthLoading} className="w-fit">
+            Confirm
+          </Btn>
         </form>
       </div>
     );
@@ -1404,8 +1455,16 @@ function KeysTab({
           </p>
         </div>
         <form onSubmit={createKey} className="flex gap-2 items-center shrink-0">
-          <Input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="Key name" className="w-36" required />
-          <Btn type="submit" loading={creating}>New key</Btn>
+          <Input
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="Key name"
+            className="w-36"
+            required
+          />
+          <Btn type="submit" loading={creating}>
+            New key
+          </Btn>
         </form>
       </div>
 
@@ -1418,11 +1477,17 @@ function KeysTab({
           </p>
           <div className="flex items-center gap-3 rounded-lg bg-white/5 border border-white/10 px-4 py-3">
             <code className="text-xs font-mono text-paper/70 break-all flex-1">{createdKey}</code>
-            <button onClick={copy} className="shrink-0 text-xs text-paper/40 hover:text-paper transition cursor-pointer">
+            <button
+              onClick={copy}
+              className="shrink-0 text-xs text-paper/40 hover:text-paper transition cursor-pointer"
+            >
               {copied ? "Copied!" : "Copy"}
             </button>
           </div>
-          <button onClick={() => setCreatedKey(null)} className="text-xs text-paper/25 hover:text-paper/50 transition self-start cursor-pointer">
+          <button
+            onClick={() => setCreatedKey(null)}
+            className="text-xs text-paper/25 hover:text-paper/50 transition self-start cursor-pointer"
+          >
             Dismiss
           </button>
         </div>
@@ -1440,8 +1505,12 @@ function KeysTab({
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-white/8 bg-white/2">
-                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider">Name</th>
-                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider hidden sm:table-cell">Created</th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="text-left px-5 py-3 text-xs font-medium text-paper/35 uppercase tracking-wider hidden sm:table-cell">
+                  Created
+                </th>
                 <th className="px-5 py-3" />
               </tr>
             </thead>
@@ -1453,7 +1522,10 @@ function KeysTab({
                     {new Date(k.created_at).toLocaleDateString()}
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <button onClick={() => deleteKey(k.id)} className="text-xs text-red-400/50 hover:text-red-400 transition cursor-pointer">
+                    <button
+                      onClick={() => deleteKey(k.id)}
+                      className="text-xs text-red-400/50 hover:text-red-400 transition cursor-pointer"
+                    >
                       Revoke
                     </button>
                   </td>
@@ -1500,13 +1572,15 @@ function LicenseTab() {
         <div>
           <p className="eyebrow text-[var(--violet)] mb-3">On-Edge License</p>
           <h2 className="text-2xl font-bold tracking-tight leading-snug">
-            Deploy Lili-o directly<br />on your hardware.
+            Deploy Lili-o directly
+            <br />
+            on your hardware.
           </h2>
         </div>
         <p className="text-sm text-paper/50 leading-relaxed max-w-lg">
-          The cloud API is great for development and testing. When you need the full
-          system running autonomously on your robot — at an exhibition, on a production
-          line, or in the field — an on-edge license is what you need.
+          The cloud API is great for development and testing. When you need the full system running
+          autonomously on your robot — at an exhibition, on a production line, or in the field — an
+          on-edge license is what you need.
         </p>
         <div className="flex flex-wrap gap-3 pt-1">
           <a
@@ -1540,7 +1614,9 @@ function LicenseTab() {
         <p className="text-sm text-paper/50">
           Pricing is tailored to your robot platform and deployment scope.
           <br />
-          <span className="text-paper/30">Reach out to get a quote or schedule a technical call.</span>
+          <span className="text-paper/30">
+            Reach out to get a quote or schedule a technical call.
+          </span>
         </p>
         <a
           href="/contact"
@@ -1570,7 +1646,10 @@ const NAV: { id: DashTab; label: string; icon: React.ReactNode }[] = [
     label: "Documentation",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2h8A1.5 1.5 0 0 1 13 3.5v8a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 2 11.5v-8zM3.5 3a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-8zM5 6.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zM5.5 4a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" fill="currentColor" />
+        <path
+          d="M2 3.5A1.5 1.5 0 0 1 3.5 2h8A1.5 1.5 0 0 1 13 3.5v8a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 2 11.5v-8zM3.5 3a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-8zM5 6.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zM5.5 4a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"
+          fill="currentColor"
+        />
       </svg>
     ),
   },
@@ -1579,7 +1658,10 @@ const NAV: { id: DashTab; label: string; icon: React.ReactNode }[] = [
     label: "Skills",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M3 3.5A.5.5 0 0 1 3.5 3h8a.5.5 0 0 1 0 1h-8A.5.5 0 0 1 3 3.5zm0 3A.5.5 0 0 1 3.5 6h8a.5.5 0 0 1 0 1h-8A.5.5 0 0 1 3 6.5zm0 3A.5.5 0 0 1 3.5 9h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 3 9.5z" fill="currentColor" />
+        <path
+          d="M3 3.5A.5.5 0 0 1 3.5 3h8a.5.5 0 0 1 0 1h-8A.5.5 0 0 1 3 3.5zm0 3A.5.5 0 0 1 3.5 6h8a.5.5 0 0 1 0 1h-8A.5.5 0 0 1 3 6.5zm0 3A.5.5 0 0 1 3.5 9h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 3 9.5z"
+          fill="currentColor"
+        />
       </svg>
     ),
   },
@@ -1588,7 +1670,10 @@ const NAV: { id: DashTab; label: string; icon: React.ReactNode }[] = [
     label: "API Keys",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M9 2C6.79 2 5 3.79 5 6c0 .73.21 1.41.57 2L2 11.58V13h1.5l.92-.92V11h1v-1h1l.58-.58C7.41 9.79 8.27 10 9 10c2.21 0 4-1.79 4-4S11.21 2 9 2zm0 6.5c-1.38 0-2.5-1.12-2.5-2.5S7.62 3.5 9 3.5 11.5 4.62 11.5 6 10.38 8.5 9 8.5zm1-3.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0z" fill="currentColor" />
+        <path
+          d="M9 2C6.79 2 5 3.79 5 6c0 .73.21 1.41.57 2L2 11.58V13h1.5l.92-.92V11h1v-1h1l.58-.58C7.41 9.79 8.27 10 9 10c2.21 0 4-1.79 4-4S11.21 2 9 2zm0 6.5c-1.38 0-2.5-1.12-2.5-2.5S7.62 3.5 9 3.5 11.5 4.62 11.5 6 10.38 8.5 9 8.5zm1-3.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0z"
+          fill="currentColor"
+        />
       </svg>
     ),
   },
@@ -1597,7 +1682,10 @@ const NAV: { id: DashTab; label: string; icon: React.ReactNode }[] = [
     label: "License",
     icon: (
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M7.5 1a6.5 6.5 0 1 0 0 13A6.5 6.5 0 0 0 7.5 1zM0 7.5a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0zm7.5-3a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708l-2-2A.5.5 0 0 1 7 9.5V5a.5.5 0 0 1 .5-.5z" fill="currentColor" />
+        <path
+          d="M7.5 1a6.5 6.5 0 1 0 0 13A6.5 6.5 0 0 0 7.5 1zM0 7.5a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0zm7.5-3a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708l-2-2A.5.5 0 0 1 7 9.5V5a.5.5 0 0 1 .5-.5z"
+          fill="currentColor"
+        />
       </svg>
     ),
   },
@@ -1624,14 +1712,21 @@ function DashboardShell({
       <header className="border-b border-white/8 h-14 flex items-center justify-between px-6 shrink-0">
         <div className="flex items-center gap-5">
           <Link href="/">
-            <img src={LOGO_SRC} alt="Lili-o" className="h-7 w-auto brightness-0 invert opacity-80" />
+            <img
+              src={LOGO_SRC}
+              alt="Lili-o"
+              className="h-7 w-auto brightness-0 invert opacity-80"
+            />
           </Link>
           <span className="text-white/15 text-lg font-light select-none">/</span>
           <span className="text-sm font-medium text-paper/50">Dashboard</span>
         </div>
         <div className="flex items-center gap-5">
           <span className="text-xs text-paper/30 hidden sm:block">{email}</span>
-          <button onClick={onLogout} className="text-xs text-paper/40 hover:text-paper/80 transition cursor-pointer">
+          <button
+            onClick={onLogout}
+            className="text-xs text-paper/40 hover:text-paper/80 transition cursor-pointer"
+          >
             Sign out
           </button>
         </div>
@@ -1664,9 +1759,7 @@ function DashboardShell({
             {tab === "tech" && <TechTab />}
             {tab === "docs" && <DocsTab />}
             {tab === "skills" && <SkillsTab jwt={jwt} onExpired={onExpired} />}
-            {tab === "keys" && (
-              <KeysTab jwt={jwt} email={email} onJwtRefresh={onJwtRefresh} />
-            )}
+            {tab === "keys" && <KeysTab jwt={jwt} email={email} onJwtRefresh={onJwtRefresh} />}
             {tab === "license" && <LicenseTab />}
           </div>
         </main>
