@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
 
 const BUDGETS = ["< $50K", "$50K – $300K", "$300K – $1M", "> $1M", "Not sure yet"];
-const SERVICES = ["Data Providing", "Data Management", "Zero Shot Software"];
+const SERVICES = ["Data Providing", "Data Management", "Zero Shot Software", "Design Partner"];
 
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
   return (

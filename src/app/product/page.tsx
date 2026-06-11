@@ -47,7 +47,8 @@ export default function ProductPage() {
         <div className="container-x relative pt-24 md:pt-36 pb-16 md:pb-24">
           <div className="eyebrow text-[var(--violet)] mb-6">Product</div>
           <h1 className="display-xl max-w-4xl">
-            Two products. <span className="text-[var(--violet)]">One architecture.</span>
+            <span className="block">Two products.</span>
+            <span className="block text-[var(--violet)]">One architecture.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg md:text-xl text-paper/70 leading-relaxed">
             Our One-Shot execution engine is the software that makes autonomous data generation

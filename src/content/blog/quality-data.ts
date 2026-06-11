@@ -3,7 +3,7 @@ import type { StaticArticle } from "./types";
 export const qualityData: StaticArticle = {
   id: "quality-data",
   slug: "3",
-  title: "What quality data means at Lili-o",
+  title: "Defining Quality Data at Lili-o",
   tag: "Data · Human behavior",
   excerpt:
     "Quality data is not volume. It is contact-rich manipulation, real-home variance, and the behavioral diversity that controlled environments cannot replicate.",

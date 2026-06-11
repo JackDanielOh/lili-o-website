@@ -20,12 +20,12 @@ export const metadata: Metadata = {
 const audiences = [
   {
     tag: "For Hardware Manufacturers",
-    headline: "Accelerate sales.",
+    headline: "Accelerate Sales.",
     body: "Stop wasting weeks programming custom proof-of-concept demos. Record one demonstration on-site via kinesthetic teaching or VR, and Lili-o instantly converts it into a repeatable live demo that adapts to real-world clutter, pose shifts, and new object geometry — proving your hardware's value to prospects on the spot.",
   },
   {
     tag: "For Software Integrators",
-    headline: "Fail-safe redundancy.",
+    headline: "Fail-Safe Redundancy.",
     body: "Protect your AI brain from edge-case failures. When end-to-end foundation models or RL policies collapse on out-of-distribution shifts, Lili-o acts as a zero-shot, deterministic fallback — mapping trajectories to any shared Cartesian task space and running entirely on local embedded hardware with zero cloud dependencies.",
   },
 ];
@@ -109,7 +109,7 @@ export default function SoftwarePage() {
 
       <section className="container-x py-24 md:py-32 border-b border-white/5">
         <div className="eyebrow text-[var(--violet)] mb-6">Who it&apos;s for</div>
-        <h2 className="display-lg max-w-3xl">Two ways teams deploy it.</h2>
+        <h2 className="display-lg max-w-3xl">Two usage for teams.</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           {audiences.map((a) => (
             <div
@@ -216,7 +216,7 @@ export default function SoftwarePage() {
         <Pyramid className="absolute -left-32 -bottom-32 w-[520px] opacity-25 pointer-events-none" />
         <div className="container-x py-32 md:py-40 relative text-center">
           <h2 className="display-xl max-w-4xl mx-auto">
-            One demonstration. <span className="text-[var(--violet)]">Deployed anywhere.</span>
+            One demonstration. <span className="text-[var(--violet)]">Deployed reliably.</span>
           </h2>
           <Link
             href="/contact"
