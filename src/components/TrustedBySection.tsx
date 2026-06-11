@@ -31,9 +31,7 @@ export function TrustedBySection() {
                   width={partner.width}
                   height={partner.height}
                   className={`object-contain ${LOGO_FILTER_CLASS} ${
-                    "imageClassName" in partner
-                      ? partner.imageClassName
-                      : "h-8 w-auto md:h-9"
+                    "imageClassName" in partner ? partner.imageClassName : "h-8 w-auto md:h-9"
                   }`}
                 />
               </li>

@@ -56,7 +56,9 @@ export function DataBottleneckSection() {
                     </span>
                   )}
                 </div>
-                <h3 className="mt-1.5 text-xl font-bold tracking-tight md:text-2xl">{item.title}</h3>
+                <h3 className="mt-1.5 text-xl font-bold tracking-tight md:text-2xl">
+                  {item.title}
+                </h3>
                 <p className="mt-2.5 text-[17px] leading-relaxed text-paper/60 md:text-lg">
                   {item.body}
                 </p>

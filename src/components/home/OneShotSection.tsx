@@ -54,12 +54,23 @@ export function OneShotSection() {
 
               <li className="relative flex items-center gap-4">
                 <span className="relative z-10 flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-[var(--violet)] text-white shadow-[0_0_20px_rgba(138,69,232,0.45)]">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </span>
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-                  <span className="text-sm text-paper/40 line-through">Industry: 1+ hr / skill</span>
+                  <span className="text-sm text-paper/40 line-through">
+                    Industry: 1+ hr / skill
+                  </span>
                   <span className="text-lg font-bold text-[var(--violet)]">Lili-o: &lt;5 min</span>
                 </div>
               </li>

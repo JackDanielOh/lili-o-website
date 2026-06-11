@@ -53,7 +53,7 @@ export function ContactForm() {
                 <span className="lg:hidden">↓ </span>
                 Complete the form
                 <span className="hidden lg:inline"> to get started</span>
-                {' — or email '}
+                {" — or email "}
                 <a href="mailto:hello@lili-o.com" className="text-[var(--violet)] hover:underline">
                   hello@lili-o.com
                 </a>

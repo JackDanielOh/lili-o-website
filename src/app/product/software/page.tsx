@@ -130,11 +130,11 @@ export default function SoftwarePage() {
           <h2 className="display-lg max-w-3xl">It&apos;s a data treadmill.</h2>
           <p className="mt-8 max-w-3xl text-lg text-paper/70 leading-relaxed">
             Imitation learning and VLAs deliver impressive results in controlled settings — but they
-            require hundreds to thousands of demonstrations per task, per robot, per environment, and
-            collapse the moment objects or scenes drift out of distribution. RL offers a
-            complementary path, but sim-to-real quality is tightly coupled to physics identification,
-            and learned policies stay brittle to distribution shift. Every environment change resets
-            the treadmill.
+            require hundreds to thousands of demonstrations per task, per robot, per environment,
+            and collapse the moment objects or scenes drift out of distribution. RL offers a
+            complementary path, but sim-to-real quality is tightly coupled to physics
+            identification, and learned policies stay brittle to distribution shift. Every
+            environment change resets the treadmill.
           </p>
           <div className="mt-12 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/10 p-8">
