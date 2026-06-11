@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
@@ -41,14 +42,12 @@ export default function RecruitPage() {
               We&apos;re not actively hiring for specific roles at the moment. Check back soon — or
               reach out if you&apos;d like to introduce yourself for future opportunities.
             </p>
-            <a
-              href="https://www.linkedin.com/in/jiseongoh/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="mt-10 inline-flex rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition"
             >
               Say hello →
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1241,7 +1241,7 @@ function DocsTab() {
               Links
             </p>
             <a
-              href="https://github.com/plume2109/lilio-sdk-python"
+              href="https://github.com/Lili-0-FR/lilio-sdk-python"
               target="_blank"
               rel="noopener noreferrer"
               className="px-2 py-1.5 text-sm text-paper/35 hover:text-paper/70 transition flex items-center gap-1.5"
