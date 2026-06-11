@@ -97,9 +97,7 @@ export function DataTierPyramid() {
             <div className="mt-1 text-base font-bold leading-tight tracking-tight sm:text-xl">
               {t.title}
             </div>
-            <p className="mt-1.5 text-xs leading-snug text-white/85 sm:text-sm">
-              {t.description}
-            </p>
+            <p className="mt-1.5 text-xs leading-snug text-white/85 sm:text-sm">{t.description}</p>
           </div>
         ))}
       </div>

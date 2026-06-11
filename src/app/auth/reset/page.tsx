@@ -7,10 +7,7 @@ import { useRouter } from "next/navigation";
 const API_BASE = "https://api.lili-o.com";
 const LOGO_SRC = "/logos/logo-primaire.svg";
 
-async function apiFetch<T = unknown>(
-  path: string,
-  opts: RequestInit = {},
-): Promise<T> {
+async function apiFetch<T = unknown>(path: string, opts: RequestInit = {}): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
     ...opts,
     headers: {
@@ -82,7 +79,17 @@ export default function ResetPage() {
           {done ? (
             <div className="rounded-2xl border border-white/10 bg-[#141414] p-10 flex flex-col items-center gap-5 text-center">
               <div className="w-12 h-12 rounded-full bg-emerald-500/15 flex items-center justify-center">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-emerald-400"
+                >
                   <path d="M20 6 9 17l-5-5" />
                 </svg>
               </div>
@@ -104,7 +111,9 @@ export default function ResetPage() {
               <div className="mb-8 text-center">
                 <p className="eyebrow text-[var(--violet)] mb-3">Robot API</p>
                 <h1 className="text-2xl font-bold tracking-tight">Set a new password</h1>
-                <p className="mt-2 text-sm text-paper/40">Choose a strong password for your account.</p>
+                <p className="mt-2 text-sm text-paper/40">
+                  Choose a strong password for your account.
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-[#141414] p-8">
@@ -117,7 +126,9 @@ export default function ResetPage() {
                 {accessToken && (
                   <form onSubmit={submit} className="flex flex-col gap-4">
                     <div>
-                      <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">New password</label>
+                      <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">
+                        New password
+                      </label>
                       <input
                         type="password"
                         value={password}
@@ -130,7 +141,9 @@ export default function ResetPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">Confirm password</label>
+                      <label className="block text-xs text-paper/40 mb-1.5 font-medium tracking-wide">
+                        Confirm password
+                      </label>
                       <input
                         type="password"
                         value={confirm}

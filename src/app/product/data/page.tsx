@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/product/data" },
   openGraph: {
     title: "Robo-Centric Data Foundry — Lili-o",
-    description: "Industrial-grade autonomous production of the Tier 1 data Physical AI is missing.",
+    description:
+      "Industrial-grade autonomous production of the Tier 1 data Physical AI is missing.",
   },
 };
 
@@ -147,7 +148,9 @@ export default function DataFoundryPage() {
           </div>
           <div className="rounded-2xl border border-[var(--violet)]/40 bg-[var(--violet)]/5 p-8 md:p-10">
             <div className="text-5xl font-bold text-[var(--violet)]">&lt;4%</div>
-            <h3 className="mt-4 text-xl font-bold tracking-tight">The &ldquo;Perfect Run&rdquo; flaw</h3>
+            <h3 className="mt-4 text-xl font-bold tracking-tight">
+              The &ldquo;Perfect Run&rdquo; flaw
+            </h3>
             <p className="mt-3 text-paper/65 leading-relaxed">
               Fewer than 4% of existing high-fidelity datasets contain failure or recovery episodes,
               and tactile data is nearly non-existent. Robots trained only on flawless trajectories
