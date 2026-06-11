@@ -7,6 +7,13 @@ const PARTNERS = [
   { name: "NVIDIA", logo: "/partnerLogos/nvidia_logo.webp", width: 160, height: 29 },
   { name: "WhatsLab", logo: "/partnerLogos/whatslab_logo.webp", width: 160, height: 34 },
   { name: "Metaba", logo: "/partnerLogos/metaba_logo.webp", width: 160, height: 38 },
+  {
+    name: "Niryo",
+    logo: "/partnerLogos/niryo_logo.webp",
+    width: 572,
+    height: 72,
+    imageClassName: "h-4 w-auto md:h-5",
+  },
 ] as const;
 
 export function TrustedBySection() {
@@ -23,7 +30,11 @@ export function TrustedBySection() {
                   alt={partner.name}
                   width={partner.width}
                   height={partner.height}
-                  className={`h-8 w-auto object-contain md:h-9 ${LOGO_FILTER_CLASS}`}
+                  className={`object-contain ${LOGO_FILTER_CLASS} ${
+                    "imageClassName" in partner
+                      ? partner.imageClassName
+                      : "h-8 w-auto md:h-9"
+                  }`}
                 />
               </li>
             ))}

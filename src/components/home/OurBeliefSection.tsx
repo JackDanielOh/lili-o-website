@@ -1,5 +1,13 @@
 "use client";
 
+import Image from "next/image";
+
+const FOUNDERS = [
+  { name: "Nicolas", image: "/founders/nicolas.png" },
+  { name: "Ludovic", image: "/founders/ludovic.png" },
+  { name: "Jiseong", image: "/founders/jiseong.png" },
+] as const;
+
 export function OurBeliefSection() {
   return (
     <section className="relative border-t border-white/5">
@@ -8,7 +16,34 @@ export function OurBeliefSection() {
           <div className="eyebrow text-[var(--violet)]">Our belief</div>
           <h2 className="display-lg mt-4">Household </h2>
           <h2 className="display-lg mt-0">is the final frontier.</h2>
+
+          <div className="mt-8 flex items-center gap-4">
+            <div className="flex items-center">
+              {FOUNDERS.map((founder, i) => (
+                <div
+                  key={founder.name}
+                  className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-ink bg-ink"
+                  style={{ marginLeft: i === 0 ? 0 : "-0.625rem", zIndex: FOUNDERS.length - i }}
+                >
+                  <Image
+                    src={founder.image}
+                    alt={founder.name}
+                    fill
+                    className="object-cover"
+                    sizes="48px"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="text-xs text-paper/45">
+              <span className="font-medium text-paper/65">
+                {FOUNDERS.map((f) => f.name).join(" · ")}
+              </span>
+              <span className="block mt-0.5">Co-founders</span>
+            </div>
+          </div>
         </div>
+
         <div className="space-y-6 text-lg leading-relaxed text-paper/80 max-w-2xl">
           <p>
             We believe the next revolution in robotics won&apos;t happen in warehouses or factories.
