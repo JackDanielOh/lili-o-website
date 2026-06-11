@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HomeHero } from "@/components/HomeHero";
 import { TrustedBySection } from "@/components/TrustedBySection";
-import { RecoveryRedirect } from "@/components/RecoveryRedirect";
 
 const OurBeliefSection = dynamic(() =>
   import("@/components/home/OurBeliefSection").then((m) => ({ default: m.OurBeliefSection })),
@@ -45,8 +44,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
-      <RecoveryRedirect />
-      <SiteHeader variant="dark" />
+<SiteHeader variant="dark" />
       <HomeHero />
       <TrustedBySection />
       <OurBeliefSection />
