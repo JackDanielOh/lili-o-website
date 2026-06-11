@@ -39,7 +39,7 @@ export function HomeHero() {
           className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/25 px-4 py-2.5 backdrop-blur-sm"
           aria-label="Antler VC backed"
         >
-          <span className="text-sm font-medium text-paper/85">Invested By Global VC</span>
+          <span className="text-sm font-medium text-paper/85">Backed By</span>
           <img
             src="/antler-logo.svg"
             alt=""
@@ -63,7 +63,7 @@ export function HomeHero() {
             autonomous data foundry
           </GradientText>{" "}
           running robots in real home environments. Generating contact-rich, household-specific
-          training data for Physical AI.
+          training data.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
           <a

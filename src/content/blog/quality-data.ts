@@ -7,7 +7,7 @@ export const qualityData: StaticArticle = {
   tag: "Data · Human behavior",
   excerpt:
     "Quality data is not volume. It is contact-rich manipulation, real-home variance, and the behavioral diversity that controlled environments cannot replicate.",
-  image: "/blog/3/thumbnail.png",
+  image: "/blog/3/thumbnail.webp",
   featured: false,
   publishedAt: "2026. 6. 1.",
   status: "Published",

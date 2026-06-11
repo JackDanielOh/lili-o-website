@@ -7,7 +7,7 @@ export const oneShotLearning: StaticArticle = {
   tag: "Manipulation · Learning",
   excerpt:
     "Our proprietary One-Shot method reduces manipulation primitive creation from over an hour to under five minutes — the unlock that makes the foundry viable at scale.",
-  image: "/blog/1/thumbnail.png",
+  image: "/blog/1/thumbnail.webp",
   featured: false,
   publishedAt: "2026. 4. 24.",
   status: "Published",

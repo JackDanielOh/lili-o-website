@@ -7,7 +7,7 @@ export const founderInterview: StaticArticle = {
   tag: "Company · Story",
   excerpt:
     "Why we believe the next revolution in robotics happens at home — and what it takes to build the data foundry that gets us there.",
-  image: "/blog/2/thumbnail.png",
+  image: "/blog/2/thumbnail.webp",
   featured: false,
   publishedAt: "2026. 5. 20.",
   status: "Published",
