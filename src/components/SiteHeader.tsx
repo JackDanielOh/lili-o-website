@@ -61,9 +61,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/contact">Contact</NavLink>
         </nav>
         <div className="hidden md:flex items-center">
-          <Link href="/dashboard" className={ctaButtonClass}>
+          <a href="https://app.lili-o.com" className={ctaButtonClass}>
             Try our solution →
-          </Link>
+          </a>
         </div>
         <button
           aria-label="Menu"
@@ -93,9 +93,9 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/contact" onClick={() => setOpen(false)}>
             Contact
           </NavLink>
-          <Link href="/dashboard" onClick={() => setOpen(false)} className={`${ctaButtonClass} w-fit`}>
+          <a href="https://app.lili-o.com" onClick={() => setOpen(false)} className={`${ctaButtonClass} w-fit`}>
             Try our solution →
-          </Link>
+          </a>
         </div>
       )}
     </header>
