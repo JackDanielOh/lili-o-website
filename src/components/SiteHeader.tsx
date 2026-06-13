@@ -93,7 +93,11 @@ export function SiteHeader({ variant = "dark" }: { variant?: "dark" | "light" })
           <NavLink href="/contact" onClick={() => setOpen(false)}>
             Contact
           </NavLink>
-          <a href="https://app.lili-o.com" onClick={() => setOpen(false)} className={`${ctaButtonClass} w-fit`}>
+          <a
+            href="https://app.lili-o.com"
+            onClick={() => setOpen(false)}
+            className={`${ctaButtonClass} w-fit`}
+          >
             Try our solution →
           </a>
         </div>

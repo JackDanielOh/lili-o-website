@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
-<SiteHeader variant="dark" />
+      <SiteHeader variant="dark" />
       <HomeHero />
       <TrustedBySection />
       <OurBeliefSection />
