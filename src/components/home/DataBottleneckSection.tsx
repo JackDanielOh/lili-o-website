@@ -4,10 +4,10 @@ import { DataTierPyramid } from "@/components/home/DataTierPyramid";
 
 const TIER_COPY = [
   {
-    tier: "Tier 3",
-    title: "Human-centric & Ego-centric",
-    body: "Cheap and abundant — YouTube, wearables, ego-video. Lacks precision, modality, and contact fidelity. Good for VLMs, not manipulation.",
-    highlight: false,
+    tier: "Tier 1",
+    title: "Robo-centric",
+    body: "High-fidelity, cross-embodiment data generated directly by autonomous robots. The layer no one was able to scale. Until now.",
+    highlight: true,
   },
   {
     tier: "Tier 2",
@@ -16,10 +16,10 @@ const TIER_COPY = [
     highlight: false,
   },
   {
-    tier: "Tier 1",
-    title: "Robo-centric",
-    body: "High-fidelity, cross-embodiment data generated directly by autonomous robots. The layer no one was able to scale. Until now.",
-    highlight: true,
+    tier: "Tier 3",
+    title: "Human-centric & Ego-centric",
+    body: "Cheap and abundant — YouTube, wearables, ego-video. Lacks precision, modality, and contact fidelity. Good for VLMs, not manipulation.",
+    highlight: false,
   },
 ] as const;
 

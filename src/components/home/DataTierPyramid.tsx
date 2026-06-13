@@ -54,7 +54,12 @@ export function DataTierPyramid() {
       role="img"
       aria-label="Data tier pyramid: Tier 3 Human-centric at the base, Tier 2 Interface-centric in the middle, Tier 1 Robo-centric at the apex as the missing scalable layer"
     >
-      <svg viewBox="0 0 400 282" className="h-auto w-full" aria-hidden="true">
+      <svg
+        viewBox="0 0 400 282"
+        preserveAspectRatio="none"
+        className="h-[420px] w-full sm:h-auto"
+        aria-hidden="true"
+      >
         <defs>
           {TIERS.map((t) => (
             <linearGradient key={t.id} id={`tier-grad-${t.id}`} x1="0" y1="0" x2="0" y2="1">

@@ -6,6 +6,8 @@ const FOUNDERS = [
   { name: "Nicolas", image: "/founders/nicolas.png" },
   { name: "Ludovic", image: "/founders/ludovic.png" },
   { name: "Jiseong", image: "/founders/jiseong.png" },
+  { name: "Quentin", image: "/founders/Quentin-Headshot.webp" },
+  { name: "Antoine", image: "/founders/Antoine-Headshot.webp" },
 ] as const;
 
 export function OurBeliefSection() {
@@ -36,10 +38,8 @@ export function OurBeliefSection() {
               ))}
             </div>
             <div className="text-xs text-paper/45">
-              <span className="font-medium text-paper/65">
-                {FOUNDERS.map((f) => f.name).join(" · ")}
-              </span>
-              <span className="block mt-0.5">Co-founders</span>
+              <span className="font-medium text-paper/65">Team Lili-o</span>
+              <span className="block mt-0.5">Founding Members</span>
             </div>
           </div>
         </div>
