@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPosts } from "@/lib/blog";
+import { getOpenRoles } from "@/lib/careers";
 import { parsePublishedAt, STATIC_BLOG_POSTS } from "@/lib/blog-fallback";
 import { SITE_URL } from "@/lib/site";
 
@@ -37,5 +38,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticEntries, ...blogEntries];
+  const { roles } = await getOpenRoles();
+  const roleEntries: MetadataRoute.Sitemap = roles.map((role) => ({
+    url: `${SITE_URL}/recruit/${role.slug}`,
+    lastModified: role.postedAt ? new Date(role.postedAt) : new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...blogEntries, ...roleEntries];
 }

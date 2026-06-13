@@ -3,6 +3,8 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Pyramid } from "@/components/Pyramid";
+import { RoleList } from "@/components/careers/RoleList";
+import { getOpenRoles } from "@/lib/careers";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -14,7 +16,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RecruitPage() {
+export const revalidate = 300;
+
+export default async function RecruitPage() {
+  const { roles } = await getOpenRoles();
+
   return (
     <div className="theme-dark bg-ink text-paper min-h-screen">
       <SiteHeader variant="dark" />
@@ -31,23 +37,34 @@ export default function RecruitPage() {
             Small team. Household robotics. At home, at scale.
           </p>
 
-          <div className="mt-14 rounded-2xl border border-white/10 border-dashed bg-[#141414] p-12 md:p-16 text-center">
-            <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full border border-white/10 bg-ink">
-              <span className="text-2xl text-paper/40" aria-hidden>
-                —
-              </span>
-            </div>
-            <h2 className="text-2xl font-bold tracking-tight">No open positions yet</h2>
-            <p className="mt-4 max-w-md mx-auto text-paper/60 leading-relaxed">
-              We&apos;re not actively hiring for specific roles at the moment. Check back soon — or
-              reach out if you&apos;d like to introduce yourself for future opportunities.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-10 inline-flex rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition"
-            >
-              Say hello →
-            </Link>
+          <div className="mt-14">
+            {roles.length > 0 ? (
+              <>
+                <h2 className="mb-8 text-sm font-medium uppercase tracking-widest text-paper/40">
+                  Open positions
+                </h2>
+                <RoleList roles={roles} />
+              </>
+            ) : (
+              <div className="rounded-2xl border border-white/10 border-dashed bg-[#141414] p-12 md:p-16 text-center">
+                <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full border border-white/10 bg-ink">
+                  <span className="text-2xl text-paper/40" aria-hidden>
+                    —
+                  </span>
+                </div>
+                <h2 className="text-2xl font-bold tracking-tight">No open positions yet</h2>
+                <p className="mt-4 max-w-md mx-auto text-paper/60 leading-relaxed">
+                  We&apos;re not actively hiring for specific roles at the moment. Check back soon —
+                  or reach out if you&apos;d like to introduce yourself for future opportunities.
+                </p>
+                <Link
+                  href="/contact"
+                  className="mt-10 inline-flex rounded-xl bg-[var(--violet)] text-white px-7 py-4 font-medium hover:bg-[var(--violet-dark)] transition"
+                >
+                  Say hello →
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
